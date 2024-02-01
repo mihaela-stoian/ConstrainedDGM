@@ -1,0 +1,49 @@
+{"goggle":
+    {
+    "faults":
+        {"unconstrained": ["outputs/GOGGLE_out/faults/unconstrained/unconstrained_random_21_1000_128_16-11-23--04-03-39", "outputs/GOGGLE_out/faults/unconstrained/unconstrained_random_9_1000_128_16-11-23--03-39-16", "outputs/GOGGLE_out/faults/unconstrained/unconstrained_random_7_1000_128_16-11-23--03-14-08", "outputs/GOGGLE_out/faults/unconstrained/unconstrained_random_5_1000_128_16-11-23--02-50-42", "outputs/GOGGLE_out/faults/unconstrained/unconstrained_random_2_1000_128_16-11-23--02-24-33"],
+         "random": [],
+         "kde": [],
+         "corr": ["outputs/GOGGLE_out/faults/constrained/constrained_corr_21_1000_128_16-11-23--04-15-43", "outputs/GOGGLE_out/faults/constrained/constrained_corr_9_1000_128_16-11-23--03-51-34", "outputs/GOGGLE_out/faults/constrained/constrained_corr_7_1000_128_16-11-23--03-26-35", "outputs/GOGGLE_out/faults/constrained/constrained_corr_5_1000_128_16-11-23--03-01-31", "outputs/GOGGLE_out/faults/constrained/constrained_corr_2_1000_128_16-11-23--02-37-24"]
+        },
+
+    "heloc":
+        {"unconstrained": ["outputs/GOGGLE_out/heloc/unconstrained/unconstrained_random_21_1000_64_15-11-23--23-17-39", "outputs/GOGGLE_out/heloc/unconstrained/unconstrained_random_9_1000_64_15-11-23--22-43-08", "outputs/GOGGLE_out/heloc/unconstrained/unconstrained_random_7_1000_64_15-11-23--22-04-25", "outputs/GOGGLE_out/heloc/unconstrained/unconstrained_random_5_1000_64_15-11-23--21-27-18", "outputs/GOGGLE_out/heloc/unconstrained/unconstrained_random_2_1000_64_15-11-23--20-48-04"],
+         "random": ["outputs/GOGGLE_out/heloc/constrained/constrained_random_21_1000_64_15-11-23--23-45-50", "outputs/GOGGLE_out/heloc/constrained/constrained_random_9_1000_64_15-11-23--23-01-31", "outputs/GOGGLE_out/heloc/constrained/constrained_random_7_1000_64_15-11-23--22-16-25", "outputs/GOGGLE_out/heloc/constrained/constrained_random_5_1000_64_15-11-23--21-32-15", "outputs/GOGGLE_out/heloc/constrained/constrained_random_2_1000_64_15-11-23--20-48-04"],
+         "kde": [],
+         "corr": []
+        },
+
+
+    "url":
+        {"unconstrained": ["outputs/GOGGLE_out/url/unconstrained/unconstrained_random_21_1000_128_16-11-23--07-12-53", "outputs/GOGGLE_out/url/unconstrained/unconstrained_random_9_1000_128_16-11-23--06-11-06", "outputs/GOGGLE_out/url/unconstrained/unconstrained_random_7_1000_128_16-11-23--05-02-41", "outputs/GOGGLE_out/url/unconstrained/unconstrained_random_5_1000_128_16-11-23--04-23-56", "outputs/GOGGLE_out/url/unconstrained/unconstrained_random_2_1000_128_16-11-23--02-07-47"],
+         "random": ["outputs/GOGGLE_out/url/constrained/constrained_random_21_1000_128_16-11-23--03-40-00", "outputs/GOGGLE_out/url/constrained/constrained_random_9_1000_128_16-11-23--03-11-25", "outputs/GOGGLE_out/url/constrained/constrained_random_7_1000_128_16-11-23--02-44-33", "outputs/GOGGLE_out/url/constrained/constrained_random_5_1000_128_16-11-23--02-26-58", "outputs/GOGGLE_out/url/constrained/constrained_random_2_1000_128_16-11-23--02-07-47"],
+         "kde": [],
+         "corr": []
+        },
+
+    "news":
+        {"unconstrained": ["outputs/GOGGLE_out/news/unconstrained/unconstrained_random_21_250_64_16-11-23--13-58-23", "outputs/GOGGLE_out/news/unconstrained/unconstrained_random_9_250_64_16-11-23--12-36-13", "outputs/GOGGLE_out/news/unconstrained/unconstrained_random_7_250_64_16-11-23--12-36-13", "outputs/GOGGLE_out/news/unconstrained/unconstrained_random_5_250_64_16-11-23--12-36-01", "outputs/GOGGLE_out/news/unconstrained/unconstrained_random_2_250_64_16-11-23--12-36-01"],
+         "random": [],
+         "kde": ["outputs/GOGGLE_out/news/constrained/constrained_kde_21_250_64_16-11-23--09-06-31", "outputs/GOGGLE_out/news/constrained/constrained_kde_9_250_64_16-11-23--07-25-13", "outputs/GOGGLE_out/news/constrained/constrained_kde_7_250_64_16-11-23--05-39-00", "outputs/GOGGLE_out/news/constrained/constrained_kde_5_250_64_16-11-23--03-51-06", "outputs/GOGGLE_out/news/constrained/constrained_kde_2_250_64_16-11-23--02-09-44"],
+         "corr": []
+        },
+
+    "wids":
+        {"unconstrained": ["outputs/GOGGLE_out/wids/unconstrained/unconstrained_random_21_200_128_16-11-23--06-25-56", "outputs/GOGGLE_out/wids/unconstrained/unconstrained_random_9_200_128_16-11-23--04-47-06", "outputs/GOGGLE_out/wids/unconstrained/unconstrained_random_7_200_128_16-11-23--03-54-14", "outputs/GOGGLE_out/wids/unconstrained/unconstrained_random_5_200_128_16-11-23--03-05-13", "outputs/GOGGLE_out/wids/unconstrained/unconstrained_random_2_200_128_16-11-23--02-12-29"],
+         "random": [],
+         "kde": [],
+         "corr": ["outputs/GOGGLE_out/wids/constrained/constrained_corr_7_200_128_16-11-23--16-06-07", "outputs/GOGGLE_out/wids/constrained/constrained_corr_21_200_128_16-11-23--08-02-14", "outputs/GOGGLE_out/wids/constrained/constrained_corr_9_200_128_16-11-23--06-27-53", "outputs/GOGGLE_out/wids/constrained/constrained_corr_7_200_128_16-11-23--04-49-20", "outputs/GOGGLE_out/wids/constrained/constrained_corr_2_200_128_16-11-23--02-12-29"]
+        },
+
+    "lcld":
+        {"unconstrained": ["outputs/GOGGLE_out/lcld/unconstrained/unconstrained_random_79_200_128_18-11-23--02-28-40", "outputs/GOGGLE_out/lcld/unconstrained/unconstrained_random_1_200_128_17-11-23--00-31-02", "outputs/GOGGLE_out/lcld/unconstrained/unconstrained_random_5_200_128_17-11-23--02-43-56", "outputs/GOGGLE_out/lcld/unconstrained/unconstrained_random_25_200_128_17-11-23--01-02-44", "outputs/GOGGLE_out/lcld/unconstrained/unconstrained_random_2_200_128_16-11-23--11-49-50"],
+         "random": [],
+         "kde": [],
+         "corr": ["outputs/GOGGLE_out/lcld/constrained/constrained_corr_1_200_128_18-11-23--01-47-17", "outputs/GOGGLE_out/lcld/constrained/constrained_corr_209_200_128_17-11-23--23-26-46", "outputs/GOGGLE_out/lcld/constrained/constrained_corr_7_200_128_16-11-23--19-48-55", "outputs/GOGGLE_out/lcld/constrained/constrained_corr_5_200_128_16-11-23--16-46-29", "outputs/GOGGLE_out/lcld/constrained/constrained_corr_2_200_128_16-11-23--11-49-50"]
+        },
+
+    "botnet":
+      {}
+    }
+}

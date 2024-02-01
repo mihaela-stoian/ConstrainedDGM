@@ -1,0 +1,37 @@
+{"wgan":
+    {
+    "faults":
+        {"unconstrained": ["WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-False_16-09-23--19-48-34", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-False_16-09-23--19-42-37", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-False_16-09-23--19-34-55", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-False_16-09-23--19-28-42", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-False_16-09-23--19-21-42"],
+         "kde": ["WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-True_16-09-23--20-25-36", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-True_16-09-23--20-38-29", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-True_16-09-23--19-35-30", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-True_16-09-23--19-29-04", "WGAN_out/faults/unconstrained/20_128_10_10_0.001_0.001_constr-True_16-09-23--19-22-25"]
+        },
+
+    "heloc":
+        {"unconstrained": ["WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-False_17-09-23--08-46-58", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-False_17-09-23--00-15-59", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-False_16-09-23--23-29-20", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-False_16-09-23--22-41-55", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-False_16-09-23--21-54-19"],
+         "kde": ["WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-True_17-09-23--09-48-14", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-True_17-09-23--08-54-05", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-True_16-09-23--23-41-15", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-True_16-09-23--22-47-48", "WGAN_out/heloc/unconstrained/50_128_10_10_0.001_0.001_constr-True_16-09-23--21-58-01"]
+        },
+
+
+    "url": 
+        {"unconstrained": ["WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-False_31-07-23--20-12-28", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-False_01-08-23--08-10-38", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-False_01-08-23--19-27-54", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-False_02-08-23--07-18-24", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-False_02-08-23--18-45-09"],
+         "random": ["WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-True_15-09-23--10-36-17", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-True_15-09-23--06-12-16", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-True_15-09-23--01-12-27", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-True_14-09-23--20-45-18", "WGAN_out/url/unconstrained/300_64_10_10_0.0001_0.0001_constr-True_14-09-23--16-00-03"]
+          },
+
+    "news":
+        {"unconstrained": ["WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-False_06-09-23--12-19-53", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-False_06-09-23--07-15-16", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-False_06-09-23--02-12-06", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-False_05-09-23--20-59-41", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-False_05-09-23--15-53-52"],
+         "kde":["WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-True_07-09-23--20-01-57", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-True_07-09-23--14-25-57", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-True_07-09-23--08-46-15", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-True_07-09-23--03-06-22", "WGAN_out/news/unconstrained/50_128_10_10_0.001_0.001_constr-True_06-09-23--21-27-23"]
+        },
+
+    "wids": 
+        {"unconstrained": ["WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-False_01-08-23--21-06-34", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-False_02-08-23--09-36-38", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-False_02-08-23--21-02-00", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-False_03-08-23--07-33-08", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-False_03-08-23--17-59-47"],
+         "kde": ["WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-True_26-08-23--01-41-58", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-True_25-08-23--02-53-31", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-True_21-08-23--05-49-02", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-True_20-08-23--07-22-32", "WGAN_out/wids/unconstrained/100_128_10_10_0.001_0.001_constr-True_19-08-23--09-43-37"]
+        },
+
+    "lcld":
+        {"unconstrained": ["WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-False_01-09-23--06-24-23", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-False_31-08-23--20-57-56", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-False_31-08-23--11-26-02", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-False_31-08-23--01-46-14", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-False_30-08-23--16-11-56"],
+         "kde": ["WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-True_29-08-23--22-00-46", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-True_28-08-23--22-26-23", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-True_27-08-23--22-44-07", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-True_26-08-23--23-06-50", "WGAN_out/lcld/unconstrained/30_128_5_10_0.001_0.001_constr-True_26-08-23--00-03-25"]
+        },
+
+    "botnet":
+      {}
+    }
+}

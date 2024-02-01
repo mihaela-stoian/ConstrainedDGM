@@ -1,0 +1,110 @@
+{"tablegan":
+    {"faults": 
+        {"unconstrained": ["outputs/TableGAN_out/faults/unconstrained/unconstrained_random_2_adam_200_128_100_64_08-09-23--18-26-40",
+                            "outputs/TableGAN_out/faults/unconstrained/unconstrained_random_5_adam_200_128_100_64_08-09-23--18-36-44",
+                            "outputs/TableGAN_out/faults/unconstrained/unconstrained_random_7_adam_200_128_100_64_08-09-23--18-46-21",
+                            "outputs/TableGAN_out/faults/unconstrained/unconstrained_random_9_adam_200_128_100_64_08-09-23--18-56-22",  
+                            "outputs/TableGAN_out/faults/unconstrained/unconstrained_random_21_adam_200_128_100_64_08-09-23--19-06-18"
+                        ],
+        "random": ["outputs/TableGAN_out/faults/constrained/constrained_random_2_adam_200_128_100_64_08-09-23--20-06-30",
+                    "outputs/TableGAN_out/faults/constrained/constrained_random_5_adam_200_128_100_64_08-09-23--20-19-19",
+                    "outputs/TableGAN_out/faults/constrained/constrained_random_7_adam_200_128_100_64_08-09-23--20-31-27",
+                    "outputs/TableGAN_out/faults/constrained/constrained_random_9_adam_200_128_100_64_08-09-23--20-43-45",
+                    "outputs/TableGAN_out/faults/constrained/constrained_random_21_adam_200_128_100_64_08-09-23--20-56-02"
+                    ], 
+        "kde":["outputs/TableGAN_out/faults/constrained/constrained_kde_2_adam_200_128_100_64_10-09-23--18-30-07",
+                "outputs/TableGAN_out/faults/constrained/constrained_kde_5_adam_200_128_100_64_10-09-23--18-43-31",
+                "outputs/TableGAN_out/faults/constrained/constrained_kde_7_adam_200_128_100_64_10-09-23--18-56-23",
+                "outputs/TableGAN_out/faults/constrained/constrained_kde_9_adam_200_128_100_64_10-09-23--19-09-15",
+                "outputs/TableGAN_out/faults/constrained/constrained_kde_21_adam_200_128_100_64_10-09-23--19-16-40"
+                ],
+        "corr":["outputs/TableGAN_out/faults/constrained/constrained_corr_2_adam_200_128_100_64_10-09-23--18-30-07",
+                "outputs/TableGAN_out/faults/constrained/constrained_corr_5_adam_200_128_100_64_10-09-23--18-43-25",
+                "outputs/TableGAN_out/faults/constrained/constrained_corr_7_adam_200_128_100_64_10-09-23--18-56-30",
+                "outputs/TableGAN_out/faults/constrained/constrained_corr_9_adam_200_128_100_64_10-09-23--19-09-31",
+                "outputs/TableGAN_out/faults/constrained/constrained_corr_21_adam_200_128_100_64_10-09-23--19-16-57"
+                ]
+        },
+            
+    "heloc": 
+        {"unconstrained": ["outputs/TableGAN_out/heloc/unconstrained/unconstrained_random_2_adam_200_128_100_64_12-09-23--13-16-16",
+                           "outputs/TableGAN_out/heloc/unconstrained/unconstrained_random_5_adam_200_128_100_64_12-09-23--13-37-55",
+                           "outputs/TableGAN_out/heloc/unconstrained/unconstrained_random_7_adam_200_128_100_64_12-09-23--13-59-10",
+                           "outputs/TableGAN_out/heloc/unconstrained/unconstrained_random_9_adam_200_128_100_64_12-09-23--14-20-41",
+                           "outputs/TableGAN_out/heloc/unconstrained/unconstrained_random_21_adam_200_128_100_64_12-09-23--14-42-26"
+                          ],  
+        "random":["outputs/TableGAN_out/heloc/constrained/constrained_random_2_adam_200_128_100_64_12-09-23--21-54-08",
+                "outputs/TableGAN_out/heloc/constrained/constrained_random_5_adam_200_128_100_64_12-09-23--22-19-22",
+                "outputs/TableGAN_out/heloc/constrained/constrained_random_7_adam_200_128_100_64_12-09-23--22-45-16",
+                "outputs/TableGAN_out/heloc/constrained/constrained_random_9_adam_200_128_100_64_12-09-23--23-11-13",
+                "outputs/TableGAN_out/heloc/constrained/constrained_random_21_adam_200_128_100_64_12-09-23--23-37-26"
+                        ],        
+         "kde":["outputs/TableGAN_out/heloc/constrained/constrained_kde_2_adam_200_128_100_64_12-09-23--21-55-28",
+                "outputs/TableGAN_out/heloc/constrained/constrained_kde_5_adam_200_128_100_64_12-09-23--22-22-26",
+                "outputs/TableGAN_out/heloc/constrained/constrained_kde_7_adam_200_128_100_64_12-09-23--22-48-24",
+                "outputs/TableGAN_out/heloc/constrained/constrained_kde_9_adam_200_128_100_64_12-09-23--23-14-34",
+                "outputs/TableGAN_out/heloc/constrained/constrained_kde_21_adam_200_128_100_64_12-09-23--23-40-49"
+            ],
+         "corr":["outputs/TableGAN_out/heloc/constrained/constrained_corr_2_adam_200_128_100_64_12-09-23--21-55-28",
+                "outputs/TableGAN_out/heloc/constrained/constrained_corr_5_adam_200_128_100_64_12-09-23--22-22-26",
+                "outputs/TableGAN_out/heloc/constrained/constrained_corr_7_adam_200_128_100_64_12-09-23--22-48-27",
+                "outputs/TableGAN_out/heloc/constrained/constrained_corr_9_adam_200_128_100_64_12-09-23--23-14-10",
+                "outputs/TableGAN_out/heloc/constrained/constrained_corr_21_adam_200_128_100_64_12-09-23--23-39-55"
+                ]
+        },
+
+    "url": 
+        {"unconstrained": ["outputs/TableGAN_out/url/unconstrained/unconstrained_random_21_adam_300_128_100_64_12-09-23--03-10-23", "outputs/TableGAN_out/url/unconstrained/unconstrained_random_9_adam_300_128_100_64_12-09-23--02-02-50", "outputs/TableGAN_out/url/unconstrained/unconstrained_random_7_adam_300_128_100_64_12-09-23--00-51-46", "outputs/TableGAN_out/url/unconstrained/unconstrained_random_5_adam_300_128_100_64_11-09-23--23-42-39", "outputs/TableGAN_out/url/unconstrained/unconstrained_random_2_adam_300_128_100_64_11-09-23--22-07-55"],
+         "random": ["outputs/TableGAN_out/url/constrained/constrained_random_21_adam_300_128_100_64_12-09-23--03-40-55", "outputs/TableGAN_out/url/constrained/constrained_random_9_adam_300_128_100_64_12-09-23--02-34-41", "outputs/TableGAN_out/url/constrained/constrained_random_7_adam_300_128_100_64_12-09-23--01-23-34", "outputs/TableGAN_out/url/constrained/constrained_random_5_adam_300_128_100_64_12-09-23--00-13-05", "outputs/TableGAN_out/url/constrained/constrained_random_2_adam_300_128_100_64_11-09-23--22-52-34"],
+         "kde": ["outputs/TableGAN_out/url/constrained/constrained_kde_21_adam_300_128_100_64_12-09-23--06-54-29", "outputs/TableGAN_out/url/constrained/constrained_kde_9_adam_300_128_100_64_12-09-23--05-41-43", "outputs/TableGAN_out/url/constrained/constrained_kde_7_adam_300_128_100_64_12-09-23--04-29-19", "outputs/TableGAN_out/url/constrained/constrained_kde_5_adam_300_128_100_64_12-09-23--03-16-28", "outputs/TableGAN_out/url/constrained/constrained_kde_2_adam_300_128_100_64_12-09-23--01-50-32"],
+         "corr": ["outputs/TableGAN_out/url/constrained/constrained_corr_21_adam_300_128_100_64_12-09-23--06-18-59", "outputs/TableGAN_out/url/constrained/constrained_corr_9_adam_300_128_100_64_12-09-23--05-05-36", "outputs/TableGAN_out/url/constrained/constrained_corr_7_adam_300_128_100_64_12-09-23--03-53-33", "outputs/TableGAN_out/url/constrained/constrained_corr_5_adam_300_128_100_64_12-09-23--02-40-43", "outputs/TableGAN_out/url/constrained/constrained_corr_2_adam_300_128_100_64_12-09-23--01-00-40"]
+        },
+
+    "news": 
+        {"unconstrained": ["outputs/TableGAN_out/news/unconstrained/unconstrained_random_2_rmsprop_50_128_100_64_12-09-23--10-30-15",
+                            "outputs/TableGAN_out/news/unconstrained/unconstrained_random_5_rmsprop_50_128_100_64_12-09-23--12-39-39",
+                            "outputs/TableGAN_out/news/unconstrained/unconstrained_random_7_rmsprop_50_128_100_64_12-09-23--14-45-35",
+                            "outputs/TableGAN_out/news/unconstrained/unconstrained_random_9_rmsprop_50_128_100_64_12-09-23--17-02-33",
+                            "outputs/TableGAN_out/news/unconstrained/unconstrained_random_21_rmsprop_50_128_100_64_12-09-23--21-24-57"
+        ],
+        "random": ["outputs/TableGAN_out/news/constrained/constrained_random_2_rmsprop_50_128_100_64_12-09-23--10-30-28",
+                    "outputs/TableGAN_out/news/constrained/constrained_random_5_rmsprop_50_128_100_64_12-09-23--12-14-57",
+                    "outputs/TableGAN_out/news/constrained/constrained_random_7_rmsprop_50_128_100_64_12-09-23--14-02-59",
+                    "outputs/TableGAN_out/news/constrained/constrained_random_9_rmsprop_50_128_100_64_12-09-23--15-48-25",
+                    "outputs/TableGAN_out/news/constrained/constrained_random_21_rmsprop_50_128_100_64_12-09-23--17-47-53"
+        ], 
+        "kde":["outputs/TableGAN_out/news/constrained/constrained_kde_2_rmsprop_50_128_100_64_12-09-23--14-37-19",
+                "outputs/TableGAN_out/news/constrained/constrained_kde_5_rmsprop_50_128_100_64_12-09-23--15-00-31",
+                "outputs/TableGAN_out/news/constrained/constrained_kde_7_rmsprop_50_128_100_64_12-09-23--15-22-55",
+                "outputs/TableGAN_out/news/constrained/constrained_kde_9_rmsprop_50_128_100_64_12-09-23--15-45-19",
+                "outputs/TableGAN_out/news/constrained/constrained_kde_21_rmsprop_50_128_100_64_12-09-23--16-07-58"
+        ],
+        "corr":["outputs/TableGAN_out/news/constrained/constrained_corr_2_rmsprop_50_128_100_64_12-09-23--14-38-54",
+                "outputs/TableGAN_out/news/constrained/constrained_corr_5_rmsprop_50_128_100_64_12-09-23--15-00-59",
+                "outputs/TableGAN_out/news/constrained/constrained_corr_7_rmsprop_50_128_100_64_12-09-23--15-23-28",
+                "outputs/TableGAN_out/news/constrained/constrained_corr_9_rmsprop_50_128_100_64_12-09-23--15-45-39",
+                "outputs/TableGAN_out/news/constrained/constrained_corr_21_rmsprop_50_128_100_64_12-09-23--16-08-10"
+        ]
+        },
+    "wids": 
+        {"unconstrained": ["outputs/TableGAN_out/wids/unconstrained/unconstrained_random_21_rmsprop_50_128_100_64_12-09-23--08-04-59", "outputs/TableGAN_out/wids/unconstrained/unconstrained_random_9_rmsprop_50_128_100_64_12-09-23--06-15-51", "outputs/TableGAN_out/wids/unconstrained/unconstrained_random_7_rmsprop_50_128_100_64_12-09-23--04-28-48", "outputs/TableGAN_out/wids/unconstrained/unconstrained_random_5_rmsprop_50_128_100_64_12-09-23--02-41-33", "outputs/TableGAN_out/wids/unconstrained/unconstrained_random_2_rmsprop_50_128_100_64_11-09-23--22-12-57"],
+          "random": ["outputs/TableGAN_out/wids/constrained/constrained_random_21_rmsprop_50_128_100_64_12-09-23--08-53-24", "outputs/TableGAN_out/wids/constrained/constrained_random_9_rmsprop_50_128_100_64_12-09-23--07-04-07", "outputs/TableGAN_out/wids/constrained/constrained_random_7_rmsprop_50_128_100_64_12-09-23--05-16-45", "outputs/TableGAN_out/wids/constrained/constrained_random_5_rmsprop_50_128_100_64_12-09-23--03-28-51", "outputs/TableGAN_out/wids/constrained/constrained_random_2_rmsprop_50_128_100_64_12-09-23--00-12-42"],
+          "kde": ["outputs/TableGAN_out/wids/constrained/constrained_kde_21_rmsprop_50_128_100_64_12-09-23--13-42-08", "outputs/TableGAN_out/wids/constrained/constrained_kde_9_rmsprop_50_128_100_64_12-09-23--10-27-46", "outputs/TableGAN_out/wids/constrained/constrained_kde_7_rmsprop_50_128_100_64_12-09-23--08-30-07", "outputs/TableGAN_out/wids/constrained/constrained_kde_5_rmsprop_50_128_100_64_12-09-23--06-31-02", "outputs/TableGAN_out/wids/constrained/constrained_kde_2_rmsprop_50_128_100_64_12-09-23--03-23-14"],
+          "corr": ["outputs/TableGAN_out/wids/constrained/constrained_corr_21_rmsprop_50_128_100_64_12-09-23--11-25-55", "outputs/TableGAN_out/wids/constrained/constrained_corr_9_rmsprop_50_128_100_64_12-09-23--09-29-24", "outputs/TableGAN_out/wids/constrained/constrained_corr_7_rmsprop_50_128_100_64_12-09-23--07-30-37", "outputs/TableGAN_out/wids/constrained/constrained_corr_5_rmsprop_50_128_100_64_12-09-23--05-32-18", "outputs/TableGAN_out/wids/constrained/constrained_corr_2_rmsprop_50_128_100_64_12-09-23--01-00-40"]
+        },
+
+    "lcld": 
+        {"unconstrained": ["outputs/TableGAN_out/lcld/unconstrained/unconstrained_random_5_adam_25_128_100_64_13-09-23--19-36-47", "outputs/TableGAN_out/lcld/unconstrained/unconstrained_random_21_adam_25_128_100_64_13-09-23--09-23-40", "outputs/TableGAN_out/lcld/unconstrained/unconstrained_random_9_adam_25_128_100_64_13-09-23--06-31-09", "outputs/TableGAN_out/lcld/unconstrained/unconstrained_random_7_adam_25_128_100_64_13-09-23--03-37-15", "outputs/TableGAN_out/lcld/unconstrained/unconstrained_random_2_adam_25_128_100_64_12-09-23--00-03-53"],
+         "random": ["outputs/TableGAN_out/lcld/constrained/constrained_random_21_adam_25_128_100_64_14-09-23--20-59-03", "outputs/TableGAN_out/lcld/constrained/constrained_random_9_adam_25_128_100_64_13-09-23--08-40-06", "outputs/TableGAN_out/lcld/constrained/constrained_random_7_adam_25_128_100_64_13-09-23--05-31-46", "outputs/TableGAN_out/lcld/constrained/constrained_random_5_adam_25_128_100_64_13-09-23--02-22-33", "outputs/TableGAN_out/lcld/constrained/constrained_random_2_adam_25_128_100_64_12-09-23--05-09-33"],
+         "kde": ["outputs/TableGAN_out/lcld/constrained/constrained_kde_9_adam_25_128_100_64_15-09-23--14-51-39", "outputs/TableGAN_out/lcld/constrained/constrained_kde_7_adam_25_128_100_64_15-09-23--02-03-33", "outputs/TableGAN_out/lcld/constrained/constrained_kde_5_adam_25_128_100_64_14-09-23--21-04-05", "outputs/TableGAN_out/lcld/constrained/constrained_kde_21_adam_25_128_100_64_14-09-23--21-04-05", "outputs/TableGAN_out/lcld/constrained/constrained_kde_2_adam_25_128_100_64_13-09-23--19-36-47"],
+         "corr": ["outputs/TableGAN_out/lcld/constrained/constrained_corr_9_adam_25_128_100_64_15-09-23--14-51-39", "outputs/TableGAN_out/lcld/constrained/constrained_corr_21_adam_25_128_100_64_15-09-23--02-11-01", "outputs/TableGAN_out/lcld/constrained/constrained_corr_7_adam_25_128_100_64_15-09-23--02-10-38", "outputs/TableGAN_out/lcld/constrained/constrained_corr_5_adam_25_128_100_64_14-09-23--21-04-05", "outputs/TableGAN_out/lcld/constrained/constrained_corr_2_adam_25_128_100_64_13-09-23--19-36-47"]
+        },
+
+    "botnet": 
+        {"unconstrained": ["TableGAN_out/botnet/unconstrained/unconstrained_21_adam_20_128_100_64_03-09-23--01-18-32", "TableGAN_out/botnet/unconstrained/unconstrained_9_adam_20_128_100_64_02-09-23--19-40-25", "TableGAN_out/botnet/unconstrained/unconstrained_7_adam_20_128_100_64_02-09-23--14-26-15", "TableGAN_out/botnet/unconstrained/unconstrained_5_adam_20_128_100_64_30-08-23--12-34-23", "TableGAN_out/botnet/unconstrained/unconstrained_2_adam_20_128_100_64_29-08-23--17-35-42"],
+         "random": ["TableGAN_out/botnet/constrained/constrained_21_adam_20_128_100_64_01-09-23--20-36-50", "TableGAN_out/botnet/constrained/constrained_9_adam_20_128_100_64_01-09-23--06-02-27", "TableGAN_out/botnet/constrained/constrained_7_adam_20_128_100_64_31-08-23--14-38-46", "TableGAN_out/botnet/constrained/constrained_5_adam_20_128_100_64_30-08-23--19-12-42", "TableGAN_out/botnet/constrained/constrained_2_adam_20_128_100_64_29-08-23--21-11-15"],
+         "kde": ["TableGAN_out/botnet/constrained/constrained_21_adam_5_128_100_64_10-09-23--02-24-52", "TableGAN_out/botnet/constrained/constrained_9_adam_5_128_100_64_09-09-23--16-51-59", "TableGAN_out/botnet/constrained/constrained_7_adam_5_128_100_64_09-09-23--07-35-00", "TableGAN_out/botnet/constrained/constrained_5_adam_5_128_100_64_08-09-23--22-22-22", "TableGAN_out/botnet/constrained/constrained_2_adam_5_128_100_64_08-09-23--12-19-53"],
+         "corr": ["TableGAN_out/botnet/constrained/constrained_21_adam_5_128_100_64_09-09-23--21-18-46", "TableGAN_out/botnet/constrained/constrained_9_adam_5_128_100_64_09-09-23--12-01-08", "TableGAN_out/botnet/constrained/constrained_7_adam_5_128_100_64_09-09-23--02-42-52", "TableGAN_out/botnet/constrained/constrained_5_adam_5_128_100_64_08-09-23--16-53-02", "TableGAN_out/botnet/constrained/constrained_2_adam_5_128_100_64_08-09-23--07-26-40"]
+        }
+    }
+}

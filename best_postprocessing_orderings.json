@@ -1,0 +1,42 @@
+{
+    "wgan": {
+        "faults": "random",
+        "heloc": "random",
+        "url": "random",
+        "news": "random",
+        "wids": "kde",
+        "lcld": "corr"
+    },
+    "tablegan": {
+        "faults": "corr",
+        "heloc": "corr",
+        "url": "random",
+        "news": "corr",
+        "wids": "random",
+        "lcld": "random"
+    },
+    "ctgan": {
+        "faults": "corr",
+        "heloc": "corr",
+        "url": "corr",
+        "news": "random",
+        "wids": "corr",
+        "lcld": "corr"
+    },
+    "tvae": {
+        "faults": "kde",
+        "heloc": "kde",
+        "url": "kde",
+        "news": "corr",
+        "wids": "kde",
+        "lcld": "corr"
+    },
+    "goggle": {
+        "faults": "kde",
+        "heloc": "corr",
+        "url": "random",
+        "news": "kde",
+        "wids": "random",
+        "lcld": "random"
+    }
+}

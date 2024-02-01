@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=24
+#SBATCH --mem-per-cpu=2G
+#SBATCH --time=12:00:00
+#SBATCH --job-name=lcld-tvae
+#SBATCH --partition=short
+#SBATCH --clusters=all
+
+module load Anaconda3
+source activate /data/PLACEHOLDER_PATH/PLACEHOLDER/conda_envs/c_gan
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/data/PLACEHOLDER_PATH/PLACEHOLDER/conda_envs/c_gan/lib
+
+# Fixed parameters
+use_case="lcld"
+server="PLACEHOLDER_SERVER3"
+wandbp="TVAE_${use_case}"
+seed=9
+eps=40
+
+bs=500
+l2scale=0.00001
+loss_factor=4
+seeds="2 5 7 9 21"
+for seed in $seeds ;
+do
+  CUDA_VISIBLE_DEVICES=-1 python main_tvae.py  ${use_case} --wandb_project=$wandbp --seed=$seed --epochs=$eps  --batch_size=${bs} --l2scale=${l2scale} --loss_factor=${loss_factor}
+  CUDA_VISIBLE_DEVICES=-1 python main_tvae.py  ${use_case} --wandb_project=$wandbp --seed=$seed --epochs=$eps  --batch_size=${bs} --l2scale=${l2scale} --loss_factor=${loss_factor} --version="constrained" --label_ordering="corr"
+  CUDA_VISIBLE_DEVICES=-1 python main_tvae.py  ${use_case} --wandb_project=$wandbp --seed=$seed --epochs=$eps  --batch_size=${bs} --l2scale=${l2scale} --loss_factor=${loss_factor} --version="constrained" --label_ordering="kde"
+  CUDA_VISIBLE_DEVICES=-1 python main_tvae.py  ${use_case} --wandb_project=$wandbp --seed=$seed --epochs=$eps  --batch_size=${bs} --l2scale=${l2scale} --loss_factor=${loss_factor} --version="constrained" --label_ordering="random"
+done

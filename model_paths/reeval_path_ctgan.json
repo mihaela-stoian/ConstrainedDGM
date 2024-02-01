@@ -1,0 +1,166 @@
+{
+    "ctgan": {
+        "faults": {
+            "unconstrained": [
+                "outputs/CTGAN_out/faults/unconstrained/unconstrained_random_2_300_500_0.0002_0.0002_24-10-23--12-58-16",
+                "outputs/CTGAN_out/faults/unconstrained/unconstrained_random_5_300_500_0.0002_0.0002_24-10-23--13-03-31",
+                "outputs/CTGAN_out/faults/unconstrained/unconstrained_random_7_300_500_0.0002_0.0002_24-10-23--13-08-22",
+                "outputs/CTGAN_out/faults/unconstrained/unconstrained_random_9_300_500_0.0002_0.0002_24-10-23--13-13-16",
+                "outputs/CTGAN_out/faults/unconstrained/unconstrained_random_21_300_500_0.0002_0.0002_24-10-23--13-18-05"
+            ],
+            "random": [
+                "outputs/CTGAN_out/faults/constrained/constrained_random_2_300_500_0.0002_0.0002_24-10-23--12-59-03",
+                "outputs/CTGAN_out/faults/constrained/constrained_random_5_300_500_0.0002_0.0002_24-10-23--13-06-03",
+                "outputs/CTGAN_out/faults/constrained/constrained_random_7_300_500_0.0002_0.0002_24-10-23--13-12-47",
+                "outputs/CTGAN_out/faults/constrained/constrained_random_9_300_500_0.0002_0.0002_24-10-23--13-19-51",
+                "outputs/CTGAN_out/faults/constrained/constrained_random_21_300_500_0.0002_0.0002_24-10-23--13-26-30"
+            ],
+            "kde": [
+                "outputs/CTGAN_out/faults/constrained/constrained_kde_2_300_500_0.0002_0.0002_24-10-23--13-00-17",
+                "outputs/CTGAN_out/faults/constrained/constrained_kde_5_300_500_0.0002_0.0002_24-10-23--13-07-37",
+                "outputs/CTGAN_out/faults/constrained/constrained_kde_7_300_500_0.0002_0.0002_24-10-23--13-14-22",
+                "outputs/CTGAN_out/faults/constrained/constrained_kde_9_300_500_0.0002_0.0002_24-10-23--13-21-30",
+                "outputs/CTGAN_out/faults/constrained/constrained_kde_21_300_500_0.0002_0.0002_24-10-23--13-28-20"
+            ],
+            "corr": [
+                "outputs/CTGAN_out/faults/constrained/constrained_corr_2_300_500_0.0002_0.0002_24-10-23--12-58-34",
+                "outputs/CTGAN_out/faults/constrained/constrained_corr_5_300_500_0.0002_0.0002_24-10-23--13-05-39",
+                "outputs/CTGAN_out/faults/constrained/constrained_corr_7_300_500_0.0002_0.0002_24-10-23--13-12-32",
+                "outputs/CTGAN_out/faults/constrained/constrained_corr_9_300_500_0.0002_0.0002_24-10-23--13-19-29",
+                "outputs/CTGAN_out/faults/constrained/constrained_corr_21_300_500_0.0002_0.0002_24-10-23--13-26-34"
+            ]
+        },
+        "heloc": {
+            "unconstrained": [
+                "outputs/CTGAN_out/heloc/unconstrained/unconstrained_random_2_500_500_0.0002_0.0002_24-10-23--12-55-04",
+                "outputs/CTGAN_out/heloc/unconstrained/unconstrained_random_5_500_500_0.0002_0.0002_24-10-23--13-18-28",
+                "outputs/CTGAN_out/heloc/unconstrained/unconstrained_random_7_500_500_0.0002_0.0002_24-10-23--13-40-28",
+                "outputs/CTGAN_out/heloc/unconstrained/unconstrained_random_9_500_500_0.0002_0.0002_24-10-23--14-02-24",
+                "outputs/CTGAN_out/heloc/unconstrained/unconstrained_random_21_500_500_0.0002_0.0002_24-10-23--14-26-08"
+            ],
+            "random": [
+                "outputs/CTGAN_out/heloc/constrained/constrained_random_2_500_500_0.0002_0.0002_24-10-23--12-55-49",
+                "outputs/CTGAN_out/heloc/constrained/constrained_random_5_500_500_0.0002_0.0002_24-10-23--13-35-30",
+                "outputs/CTGAN_out/faults/constrained/constrained_random_2_300_500_0.0002_0.0002_24-10-23--12-59-03",
+                "outputs/CTGAN_out/heloc/constrained/constrained_random_9_500_500_0.0002_0.0002_24-10-23--14-55-41",
+                "outputs/CTGAN_out/heloc/constrained/constrained_random_21_500_500_0.0002_0.0002_24-10-23--15-36-07"
+            ],
+            "kde": [
+                "outputs/CTGAN_out/heloc/constrained/constrained_kde_2_500_500_0.0002_0.0002_25-10-23--15-42-10",
+                "outputs/CTGAN_out/heloc/constrained/constrained_kde_5_500_500_0.0002_0.0002_25-10-23--16-22-37",
+                "outputs/CTGAN_out/heloc/constrained/constrained_kde_7_500_500_0.0002_0.0002_25-10-23--17-04-15",
+                "outputs/CTGAN_out/heloc/constrained/constrained_kde_9_500_500_0.0002_0.0002_25-10-23--17-44-50",
+                "outputs/CTGAN_out/heloc/constrained/constrained_kde_21_500_500_0.0002_0.0002_25-10-23--18-24-38"
+            ],
+            "corr": [
+                "outputs/CTGAN_out/heloc/constrained/constrained_corr_2_500_500_0.0002_0.0002_25-10-23--15-42-10",
+                "outputs/CTGAN_out/heloc/constrained/constrained_corr_5_500_500_0.0002_0.0002_25-10-23--16-22-18",
+                "outputs/CTGAN_out/heloc/constrained/constrained_corr_7_500_500_0.0002_0.0002_25-10-23--17-03-49",
+                "outputs/CTGAN_out/heloc/constrained/constrained_corr_9_500_500_0.0002_0.0002_25-10-23--17-45-27",
+                "outputs/CTGAN_out/heloc/constrained/constrained_corr_21_500_500_0.0002_0.0002_25-10-23--18-27-31"
+            ]
+        },
+        "url": {
+            "unconstrained": [
+                "outputs/CTGAN_out/url/unconstrained/unconstrained_random_2_300_500_0.0002_0.0002_25-10-23--15-13-27",
+                "outputs/CTGAN_out/url/unconstrained/unconstrained_random_5_300_500_0.0002_0.0002_25-10-23--15-33-53",
+                "outputs/CTGAN_out/url/unconstrained/unconstrained_random_7_300_500_0.0002_0.0002_25-10-23--15-54-22",
+                "outputs/CTGAN_out/url/unconstrained/unconstrained_random_9_300_500_0.0002_0.0002_25-10-23--16-15-11",
+                "outputs/CTGAN_out/url/unconstrained/unconstrained_random_21_300_500_0.0002_0.0002_25-10-23--16-35-13"
+            ],
+            "random": [
+                "outputs/CTGAN_out/url/constrained/constrained_random_2_300_500_0.0002_0.0002_25-10-23--15-13-27",
+                "outputs/CTGAN_out/url/constrained/constrained_random_5_300_500_0.0002_0.0002_25-10-23--15-59-33",
+                "outputs/CTGAN_out/url/constrained/constrained_random_7_300_500_0.0002_0.0002_25-10-23--16-45-13",
+                "outputs/CTGAN_out/url/constrained/constrained_random_9_300_500_0.0002_0.0002_25-10-23--17-30-34",
+                "outputs/CTGAN_out/url/constrained/constrained_random_21_300_500_0.0002_0.0002_25-10-23--18-14-05"
+            ],
+            "kde": [
+                "outputs/CTGAN_out/url/constrained/constrained_kde_2_300_500_0.0002_0.0002_26-10-23--13-38-27",
+                "outputs/CTGAN_out/url/constrained/constrained_kde_5_300_500_0.0002_0.0002_26-10-23--14-22-40",
+                "outputs/CTGAN_out/url/constrained/constrained_kde_7_300_500_0.0002_0.0002_26-10-23--15-05-38",
+                "outputs/CTGAN_out/url/constrained/constrained_kde_9_300_500_0.0002_0.0002_26-10-23--15-50-17",
+                "outputs/CTGAN_out/url/constrained/constrained_kde_21_300_500_0.0002_0.0002_26-10-23--16-34-57"
+            ],
+            "corr": [
+                "outputs/CTGAN_out/url/constrained/constrained_corr_2_300_500_0.0002_0.0002_26-10-23--13-38-27",
+                "outputs/CTGAN_out/url/constrained/constrained_corr_5_300_500_0.0002_0.0002_26-10-23--14-22-47",
+                "outputs/CTGAN_out/url/constrained/constrained_corr_7_300_500_0.0002_0.0002_26-10-23--15-06-29",
+                "outputs/CTGAN_out/url/constrained/constrained_corr_9_300_500_0.0002_0.0002_26-10-23--15-50-45",
+                "outputs/CTGAN_out/url/constrained/constrained_corr_21_300_500_0.0002_0.0002_26-10-23--16-34-56"
+            ]
+        },
+        "news": {
+            "unconstrained": [
+                "outputs/CTGAN_out/news/unconstrained/unconstrained_random_2_100_500_0.0002_0.0002_24-10-23--13-02-52",
+                "outputs/CTGAN_out/news/unconstrained/unconstrained_random_5_100_500_0.0002_0.0002_24-10-23--14-12-28",
+                "outputs/CTGAN_out/news/unconstrained/unconstrained_random_7_100_500_0.0002_0.0002_24-10-23--15-21-36",
+                "outputs/CTGAN_out/news/unconstrained/unconstrained_random_9_100_500_0.0002_0.0002_24-10-23--16-39-58",
+                "outputs/CTGAN_out/news/unconstrained/unconstrained_random_21_100_500_0.0002_0.0002_24-10-23--17-40-51"
+            ],
+            "random": [
+                "outputs/CTGAN_out/news/constrained/constrained_random_2_100_500_0.0002_0.0002_24-10-23--13-04-12",
+                "outputs/CTGAN_out/news/constrained/constrained_random_5_100_500_0.0002_0.0002_24-10-23--14-51-05",
+                "outputs/CTGAN_out/news/constrained/constrained_random_7_100_500_0.0002_0.0002_24-10-23--16-33-21",
+                "outputs/CTGAN_out/news/constrained/constrained_random_9_100_500_0.0002_0.0002_24-10-23--18-00-26",
+                "outputs/CTGAN_out/news/constrained/constrained_random_21_100_500_0.0002_0.0002_24-10-23--19-34-03"
+            ],
+            "kde": [
+                "outputs/CTGAN_out/news/constrained/constrained_kde_2_100_500_0.0002_0.0002_24-10-23--13-04-36",
+                "outputs/CTGAN_out/news/constrained/constrained_kde_5_100_500_0.0002_0.0002_24-10-23--14-44-54",
+                "outputs/CTGAN_out/news/constrained/constrained_kde_7_100_500_0.0002_0.0002_24-10-23--16-36-36",
+                "outputs/CTGAN_out/news/constrained/constrained_kde_9_100_500_0.0002_0.0002_24-10-23--18-18-20",
+                "outputs/CTGAN_out/news/constrained/constrained_kde_21_100_500_0.0002_0.0002_24-10-23--20-02-30"
+            ],
+            "corr": [
+                "outputs/CTGAN_out/news/constrained/constrained_corr_2_100_500_0.0002_0.0002_24-10-23--13-04-36",
+                "outputs/CTGAN_out/news/constrained/constrained_corr_5_100_500_0.0002_0.0002_24-10-23--14-39-15",
+                "outputs/CTGAN_out/news/constrained/constrained_corr_7_100_500_0.0002_0.0002_24-10-23--16-27-38",
+                "outputs/CTGAN_out/news/constrained/constrained_corr_9_100_500_0.0002_0.0002_24-10-23--18-02-39",
+                "outputs/CTGAN_out/news/constrained/constrained_corr_21_100_500_0.0002_0.0002_24-10-23--19-53-26"
+            ]
+        },
+        "wids": {
+            "unconstrained": [
+                "outputs/CTGAN_out/wids/unconstrained/unconstrained_random_2_100_500_0.0002_0.0002_24-10-23--12-42-07",
+                "outputs/CTGAN_out/wids/unconstrained/unconstrained_random_5_100_500_0.0002_0.0002_24-10-23--13-42-42",
+                "outputs/CTGAN_out/wids/unconstrained/unconstrained_random_7_100_500_0.0002_0.0002_24-10-23--15-18-09",
+                "outputs/CTGAN_out/wids/unconstrained/unconstrained_random_9_100_500_0.0002_0.0002_24-10-23--16-54-45",
+                "outputs/CTGAN_out/wids/unconstrained/unconstrained_random_21_100_500_0.0002_0.0002_24-10-23--18-43-34"
+            ],
+            "random": [
+                "outputs/CTGAN_out/wids/constrained/constrained_random_2_100_500_0.0002_0.0002_24-10-23--12-50-15",
+                "outputs/CTGAN_out/wids/constrained/constrained_random_5_100_500_0.0002_0.0002_24-10-23--15-20-42",
+                "outputs/CTGAN_out/wids/constrained/constrained_random_7_100_500_0.0002_0.0002_24-10-23--17-57-20",
+                "outputs/CTGAN_out/wids/constrained/constrained_random_9_100_500_0.0002_0.0002_24-10-23--20-33-30",
+                "outputs/CTGAN_out/wids/constrained/constrained_random_21_100_500_0.0002_0.0002_24-10-23--22-57-08"
+            ],
+            "kde": [
+                "outputs/CTGAN_out/wids/constrained/constrained_kde_2_100_500_0.0002_0.0002_24-10-23--12-51-09",
+                "outputs/CTGAN_out/wids/constrained/constrained_kde_5_100_500_0.0002_0.0002_24-10-23--15-18-55",
+                "outputs/CTGAN_out/wids/constrained/constrained_kde_7_100_500_0.0002_0.0002_24-10-23--17-53-03",
+                "outputs/CTGAN_out/wids/constrained/constrained_kde_9_100_500_0.0002_0.0002_24-10-23--20-11-30",
+                "outputs/CTGAN_out/wids/constrained/constrained_kde_21_100_500_0.0002_0.0002_24-10-23--22-47-16"
+            ],
+            "corr": [
+                "outputs/CTGAN_out/wids/constrained/constrained_corr_2_100_500_0.0002_0.0002_24-10-23--12-53-07",
+                "outputs/CTGAN_out/wids/constrained/constrained_corr_5_100_500_0.0002_0.0002_24-10-23--15-21-04",
+                "outputs/CTGAN_out/wids/constrained/constrained_corr_7_100_500_0.0002_0.0002_24-10-23--17-49-00",
+                "outputs/CTGAN_out/wids/constrained/constrained_corr_9_100_500_0.0002_0.0002_24-10-23--20-14-28",
+                "outputs/CTGAN_out/wids/constrained/constrained_corr_21_100_500_0.0002_0.0002_24-10-23--22-21-21"
+            ]
+        },
+        "lcld": {
+            "unconstrained": [],
+            "random": [],
+            "kde": [],
+            "corr": []
+        },
+        "botnet": {
+            "unconstrained": [],
+            "random": [],
+            "kde": [],
+            "corr": []
+        }
+    }
+}
