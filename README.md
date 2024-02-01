@@ -2,6 +2,19 @@
 # Constrained DGMs
 
 This repository contains the code for the constraint layer proposed in our paper accepted for publication at ICLR2024. The models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
+
+If you use this paper, please cite the following:
+```
+@inproceedings{cdgm2024iclr,
+  title = "How Realistic Is Your Synthetic Data? Constraining Deep Generative Models for Tabular Data",
+  author = "Mihaela Catalina Stoian and Salijona Dyrmishi and Maxime Cordy and Thomas Lukasiewicz and Eleonora Giunchiglia",
+  year = "2024",
+  booktitle = "Proceedings of the 12th International Conference on Learning Representations, ICLR 2024, Vienna, Austria, 7--11 May 2024",
+  month = "May",
+}
+```
+
+
 ## Dependencies
 ````
 conda create -n "cdgm" python=3.10 ipython
