@@ -1,7 +1,13 @@
 
 # Constrained DGMs
 
-This repository contains the code for the constraint layer proposed in our paper accepted for publication at ICLR2024. The models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
+This repository contains the code for the constraint layer proposed in our paper titled "**How Realistic Is Your Synthetic Data? Constraining Deep Generative Models for Tabular Data**", which was accepted for publication at ICLR 2024. 
+
+Deep Generative Models (DGMs) have been shown to be powerful tools for generating tabular data. 
+However, they fail to comply with constraints that encode essential background knowledge on the problem at hand, which is needed to generate realistic synthetic data.
+In our paper, we address this limitation and show how DGMs for tabular data can be transformed into **Constrained Deep Generative Models (C-DGMs)**, whose generated samples are guaranteed to be compliant with the given constraints. 
+
+[//]: # (This is achieved by automatically parsing the constraints and transforming them into a Constraint Layer &#40;CL&#41; seamlessly integrated with the DGM, as shown below.)
 
 If you use this paper, please cite the following:
 ```
@@ -13,6 +19,8 @@ If you use this paper, please cite the following:
   month = "May",
 }
 ```
+
+The models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
 
 
 ## Dependencies
