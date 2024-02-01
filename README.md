@@ -1,7 +1,7 @@
 
 # Constrained DGMs
 
-This anonymous repository contains the code for the constraint layer proposed in our paper submitted to ICLR2024. The models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
+This anonymous repository contains the code for the constraint layer proposed in our paper accepted for publication at ICLR2024. The models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
 ## Dependencies
 ````
 conda create -n "cdgm" python=3.10 ipython
