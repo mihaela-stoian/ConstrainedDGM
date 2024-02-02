@@ -10,9 +10,9 @@ import wandb
 from timeit import default_timer as timer
 
 from synthetizers.CTGAN.ctgan import CTGAN
-from evaluation.eval import eval_synthetic_data, sdv_eval_synthetic_data, constraints_sat_check
+from evaluation.eval import eval_synthetic_data, constraints_sat_check
 from utils import set_seed, read_csv, all_div_gt_n, _load_json
-from gather_results.reeval_final import prepare_gen_data
+from evaluation.reeval_final import prepare_gen_data
 
 # wandb.log({'accuracy': train_acc, 'loss': train_loss})
 # wandb.config.dropout = 0.2

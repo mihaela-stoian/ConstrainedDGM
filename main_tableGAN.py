@@ -11,7 +11,7 @@ import wandb
 
 from synthetizers.TableGAN.tableGAN import TableGAN
 from evaluation.eval import eval_synthetic_data, sdv_eval_synthetic_data, constraints_sat_check
-from gather_results.reeval_final import prepare_gen_data
+from evaluation.reeval_final import prepare_gen_data
 from utils import set_seed, read_csv, _load_json
 # wandb.log({'accuracy': train_acc, 'loss': train_loss})
 # wandb.config.dropout = 0.2

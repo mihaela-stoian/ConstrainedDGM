@@ -1,18 +1,9 @@
-    
-import pandas as pd
-import os
 import argparse
-import pickle
 import datetime
 import pandas as pd
-import numpy as np
 import wandb
 
-from timeit import default_timer as timer
-
-from synthetizers.CTGAN.ctgan import CTGAN
-from utils import set_seed, read_csv, all_div_gt_n, _load_json
-from gather_results.reeval_final import prepare_gen_data
+from utils import set_seed, read_csv, _load_json
 from evaluation.stasy_utility_detection import compute_utility_real
 DATETIME = datetime.datetime.now()
 
