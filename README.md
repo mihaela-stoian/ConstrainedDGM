@@ -22,7 +22,7 @@ If you use this paper, please cite the following:
 }
 ```
 
-The models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
+As of now, the models included in this repository (on top of which we applied our constraint layer) are: CTGAN [1], TVAE [1], and TableGAN [2]. 
 
 
 ## Dependencies
