@@ -41,7 +41,7 @@ To download the datasets as they were used in this paper please use this link ht
 
 Please refer to the appendix of our paper where we detail the datasets we used, the original source and pre-processing if any.
 
-The scripts to split the data into train, validation and testing partitions are available in the `other_helper_scripts` directory of this repository.
+If needed, the scripts that we used to split the data into train, validation and testing partitions are available in the `other_helper_scripts` directory of this repository.
 
 ### TableGAN
 
