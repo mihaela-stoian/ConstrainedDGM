@@ -37,10 +37,11 @@ pip install synthcity
 ````
 
 ## Examples
-The Faulty Steel Plates (Faults) dataset is available [here](https://www.kaggle.com/datasets/uciml/faulty-steel-plates).
-To download the other datasets, please refer to the appendix of our paper where we detail the datasets we used.
+To download the datasets as they were used in this paper please use this link https://figshare.com/account/articles/26830996?file=48787246. Place train, val and test splits in the approriate dataset folder under data directory.  
 
-Scripts to split the data into train, validation and testing partitions are available in the `other_helper_scripts` directory of this repository.
+Please refer to the appendix of our paper where we detail the datasets we used, the original source and pre-processing if any.
+
+The scripts to split the data into train, validation and testing partitions are available in the `other_helper_scripts` directory of this repository.
 
 ### TableGAN
 
