@@ -37,7 +37,15 @@ pip install synthcity
 ````
 
 ## Examples
-To download the datasets as they were used in this paper please use this link https://figshare.com/account/articles/26830996?file=48787246. Place train, val and test splits in the approriate dataset folder under data directory.  
+To download the datasets as they were used in this paper please use the folliwing links:
+- https://data.mendeley.com/datasets/c2gw7fy2j4/2
+- https://www.kaggle.com/competitions/widsdatathon2021
+- https://figshare.com/s/84ae808ce6999fafd192
+- https://huggingface.co/datasets/mstz/heloc
+- https://www.kaggle.com/datasets/uciml/faulty-steel-plates
+- https://archive.ics.uci.edu/dataset/332/online+news+popularity
+
+Place train, val and test splits in the approriate dataset folder under data directory.  
 
 Please refer to the appendix of our paper where we detail the datasets we used, the original source and pre-processing if any.
 
