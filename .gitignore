@@ -1,0 +1,13 @@
+outputs/
+wandb/
+bash_scripts/
+__pycache__/
+.vscode/
+*.pkl
+*.gzip
+*.out
+*.log
+*.sh
+*.csv
+*.json
+*.png
