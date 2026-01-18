@@ -4,14 +4,6 @@ import numpy as np
 import pandas as pd
 import torch
 import wandb
-from sdmetrics.single_table import (LinearRegression, MLPRegressor,
-                                    MulticlassDecisionTreeClassifier,
-                                    MulticlassMLPClassifier)
-from sdv.metrics.tabular import (BinaryAdaBoostClassifier,
-                                 BinaryDecisionTreeClassifier,
-                                 BinaryMLPClassifier, LogisticDetection,
-                                 SVCDetection)
-from synthcity.plugins.core.dataloader import GenericDataLoader
 
 from cdgm.constraints_code.compute_sets_of_constraints import  compute_sets_of_constraints
 from cdgm.constraints_code.correct_predictions import check_all_constraints_sat
@@ -48,9 +40,6 @@ def eval_quality(real_data, generated_data_list, columns, target_column):
     return quality_scores, quality_avg
 
 
-
-
-
 def eval_synthetic_data(args, use_case, real_data, generated_data, columns, problem_type, target_utility, target_utility_size, target_detection, log_wandb, wandb_run, unrounded_generated_data_for_cons_sat=None, eval_real=False):
 
     feature_correlation(real_data["test"], log_wandb, wandb_run, "correlation_real")
@@ -70,11 +59,6 @@ def eval_synthetic_data(args, use_case, real_data, generated_data, columns, prob
     results_cons = pd.DataFrame(results_cons, columns=["mean_sat_score", "cons_sat_rate_all", "cons_sat_for_individual_example"])
     cons_avg = pd.DataFrame([results_cons.mean(axis=0), results_cons.std(axis=0)], index=["Mean", "Std"])
 
-    # print('Compute the synthcity quality scores')
-    # quality_scores, quality_avg= eval_quality(real_data["train"], generated_data["train"], columns, target_utility)
-
-    # df_quality = metrics_to_wandb(quality_scores)
-    # print(df_quality)
 
     print('Compute the stasy utility scores')
     utility_real, utility_syn = stasy_utility_detection.compute_utility_scores(real_data, generated_data["train"],  problem_type, columns, target_utility, target_utility_size, eval_real=eval_real)
@@ -104,14 +88,14 @@ def eval_synthetic_data(args, use_case, real_data, generated_data, columns, prob
     all_avg = all_avg.rename(index={"0": 'Mean', "1":"Std"})
 
     save_id = 'INFERENCE'
-    pkl.dump(results_cons, open(f'{args.exp_path}/{save_id}_results_cons.pkl', 'wb'), -1)
-    pkl.dump(cons_avg, open(f'{args.exp_path}/{save_id}_cons_avg.pkl', 'wb'), -1)
-    pkl.dump(generated_data, open(f'{args.exp_path}/{save_id}_generated_data.pkl', 'wb'), -1)
-    # pkl.dump((quality_scores, quality_avg), open(f'{args.exp_path}/{save_id}_quality_scores.pkl', 'wb'), -1)
-    pkl.dump(utility_syn, open(f'{args.exp_path}/{save_id}_utility_scores.pkl', 'wb'), -1)
-    pkl.dump((a_det, b_det, c_det, detection_avg), open(f'{args.exp_path}/{save_id}_detection_scores.pkl', 'wb'), -1)
-    pkl.dump(all_avg, open(f'{args.exp_path}/{save_id}_all_avg_scores.pkl', 'wb'), -1)
-    with open(f'{args.exp_path}/final_{save_id}_all_avg_scores.csv', 'w') as f:
+    pkl.dump(results_cons, open(f'{args.path}/{save_id}_results_cons.pkl', 'wb'), -1)
+    pkl.dump(cons_avg, open(f'{args.path}/{save_id}_cons_avg.pkl', 'wb'), -1)
+    pkl.dump(generated_data, open(f'{args.path}/{save_id}_generated_data.pkl', 'wb'), -1)
+    # pkl.dump((quality_scores, quality_avg), open(f'{args.path}/{save_id}_quality_scores.pkl', 'wb'), -1)
+    pkl.dump(utility_syn, open(f'{args.path}/{save_id}_utility_scores.pkl', 'wb'), -1)
+    pkl.dump((a_det, b_det, c_det, detection_avg), open(f'{args.path}/{save_id}_detection_scores.pkl', 'wb'), -1)
+    pkl.dump(all_avg, open(f'{args.path}/{save_id}_all_avg_scores.pkl', 'wb'), -1)
+    with open(f'{args.path}/final_{save_id}_all_avg_scores.csv', 'w') as f:
         a = ''
         b = ''
         for key in all_avg.columns:
@@ -119,14 +103,13 @@ def eval_synthetic_data(args, use_case, real_data, generated_data, columns, prob
             b += f'{all_avg[key][0]},'
         a += 'model_path\n'
         a += 'model_path\n'
-        b += f'{args.exp_path}/'
+        b += f'{args.path}/'
         f.write(a+b)
 
 
     if log_wandb:
         wandb_run.log({f"INFERENCE/constraints/all": wandb.Table(dataframe=results_cons)})
         wandb_run.log({f"INFERENCE/aggregated/constraints": wandb.Table(dataframe=cons_avg)})
-
         wandb_run.log({f"INFERENCE/aggregated/eval_metrics_syn": wandb.Table(dataframe=all_avg)})
 
         # wandb_run.log({f"INFERENCE/quality/quality": wandb.Table(dataframe=quality_scores)})
@@ -144,39 +127,6 @@ def eval_synthetic_data(args, use_case, real_data, generated_data, columns, prob
             wandb_run.log({f"INFERENCE/utility/real/best_weighted_scores": wandb.Table(dataframe=utility_real[1])})
             wandb_run.log({f"INFERENCE/utility/real/best_auroc_scores": wandb.Table(dataframe=utility_real[2])})
  
-
-def ml_efficacy(train_data, test_data, target_col, ctype='binary'):
-    # bt = BinaryDecisionTreeClassifier()
-    # ab = BinaryAdaBoostClassifier()
-    # mlp = BinaryMLPClassifier()
-    if ctype == 'binary':
-        classifiers = [BinaryAdaBoostClassifier(), BinaryMLPClassifier(), BinaryDecisionTreeClassifier()]
-    elif ctype == 'multiclass':
-        classifiers = [MulticlassMLPClassifier(), MulticlassDecisionTreeClassifier()]
-    elif ctype == 'regression':
-        classifiers = [LinearRegression(), MLPRegressor()]    # cls_names = ["BinaryAdaBoostClassifier()", "BinaryMLPClassifier()", "BinaryDecisionTreeClassifier"]
-    scores = []
-    for i in range(len(classifiers)):
-        classifier = classifiers[i]
-        avg_sc = 0
-        for j in range(5):
-            sc = classifier.compute(test_data, train_data, target=target_col)
-            avg_sc += sc
-        scores.append(avg_sc / 5)
-
-    return scores
-
-def ml_detection_metrics(real_data, syn_data):
-    lr_model = LogisticDetection()
-    svc_model = SVCDetection()
-    lr = lr_model.compute(real_data, syn_data)
-    svc = svc_model.compute(real_data, syn_data)
-
-    print('Reporting detection scores as 1-|score-0.5|*2 at inference time, higher is better')
-    lr = 1 - np.abs(lr-0.5)*2
-    svc = 1 - np.abs(svc-0.5)*2
-    return lr, svc
-
 
 def constraints_sat_check(args, real_data, generated_data, log_wandb):
     # Note: the ordering of the labels does not matter here
@@ -265,70 +215,3 @@ def real_sat_check(args, real_data, constraints, log_wandb):
         dataframe=percentage_of_samples_violating_constraints)})
 
     return sat_rate_per_constr, percentage_of_samples_violating_constraints
-
-
-def sdv_eval_synthetic_data(args, use_case, real_data, generated_data, columns, problem_type, target_utility, target_detection, log_wandb, wandb_run):
-    lr_scores, svc_scores, adas, mlps, dts = [], [], [], [], []
-    ctype = 'binary'
-    ctype_stasy = 'binary_classification'
-    if args.use_case == 'faults':
-        ctype = 'multiclass'
-        ctype_stasy = 'multiclass_classification'
-    elif args.use_case == 'news':
-        ctype = 'regression'
-        ctype_stasy = 'regression'
-    for i in range(len(generated_data["test"])):
-        # if args.quick_eval:
-        #     syn_data_shape = args.num_quick_eval_samples
-        # else:
-        #     syn_data_shape = test_data.shape[0]
-        syn_data_for_detection = generated_data['test'][i]
-        syn_data_for_detection = pd.DataFrame(syn_data_for_detection, columns=args.train_data_cols).astype(float)
-        syn_data_for_detection[target_utility] = syn_data_for_detection[target_utility].astype(args.dtypes[-1])
-        real_data_test = pd.DataFrame(real_data['test'], columns=args.train_data_cols).astype(float)
-        real_data_test[target_utility] = real_data_test[target_utility].astype(args.dtypes[-1])
-
-        # lr_score, svc_score = ml_detection_metrics(real_data_test[:syn_data_for_detection.shape[0]], syn_data_for_detection)
-        lr_score, svc_score = ml_detection_metrics(real_data_test, syn_data_for_detection)
-        lr_scores.append(lr_score)
-        svc_scores.append(svc_score)
-        print(f'detection run {i}', lr_score, svc_score)
-
-
-        print('Computing utility for synth data with same shape as train set, using test set to get generalisation performance')
-        # if args.quick_eval:
-        #     syn_data_shape = args.num_quick_eval_samples
-        # else:
-        #     syn_data_shape = X_train_.shape[0]
-
-        syn_data_for_efficacy = generated_data['train'][i]
-        syn_data_for_efficacy = pd.DataFrame(syn_data_for_efficacy, columns=args.train_data_cols).astype(float)
-        syn_data_for_efficacy[target_utility] = syn_data_for_efficacy[target_utility].astype(args.dtypes[-1])
-
-        ml_eff_score = ml_efficacy(syn_data_for_efficacy, real_data_test, target_utility, ctype=ctype)
-        adas.append(ml_eff_score[0])
-        mlps.append(ml_eff_score[1])
-        lr_scores = [sum(lr_scores) / len(lr_scores)]
-        svc_scores = [sum(svc_scores) / len(svc_scores)]
-        adas = [sum(adas) / len(adas)]
-        mlps = [sum(mlps) / len(mlps)]
-        if len(ml_eff_score)>2:
-            dts.append(ml_eff_score[2])
-            dts = [sum(dts) / len(dts)]
-            scores = {'LR': lr_scores, 'SVC': svc_scores, 'Ada': adas, 'MLP': mlps, 'DT': dts}
-
-        else:
-            scores = {'LR': lr_scores, 'SVC': svc_scores, 'Cls1': adas, 'Cls2': mlps}
-
-    df = pd.DataFrame(data=scores)
-    if log_wandb:
-        wandb.log({"final_performance": wandb.Table(data=df)})  # https://docs.wandb.ai/ref/python/data-types/table
-
-    df.to_csv(f'{args.exp_path}/final_sdv.csv', mode='a')
-    for col in scores:
-        values = scores[col]
-        print(col)
-        print('mean:', np.mean(values))
-        print('std:', np.std(values))
-
-
