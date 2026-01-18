@@ -3,46 +3,35 @@ import argparse
 import datetime
 import os
 import sys
-import pickle
-from timeit import default_timer as timer
 
-import numpy as np
 import pandas as pd
 import wandb
 
 sys.path.append('.')
 
 from cdgm.synthetizers.CTGAN.ctgan import CTGAN
-from run_dgm.run_utils import evaluate_model_performance, runtime_evaluation
+from run_dgm.run_utils import evaluate_model_performance, runtime_evaluation, add_common_args, generate_evaluation_data
 from utils import _load_json, all_div_gt_n, read_csv, set_seed
 
 DATETIME = datetime.datetime.now()
 
 
 def _parse_args():
-    parser = argparse.ArgumentParser(description='CTGAN Command Line Interface')
-    parser.add_argument("--seed", default=7, type=int)
-    parser.add_argument("--use_only_target_original_dtype", action='store_true')
-    parser.add_argument("--pac", default=10, type=int)
-    parser.add_argument("--wandb_project", default="ctgan", type=str)
+    parser = argparse.ArgumentParser(description='C-DGMs Command Line Interface')
     parser.add_argument("--model_type", default="CTGAN", type=str)
-    parser.add_argument("--wandb_mode", default="online", type=str, choices=['online', 'disabled', 'offline'])
-    parser.add_argument('-e', '--epochs', default=300, type=int,
-                        help='Number of training epochs')
-    parser.add_argument('-n', '--num-samples', type=int,
-                        help='Number of rows to sample. Defaults to the training data size')
-    parser.add_argument("--save_every_n_epochs", default=5, type=int)
+
+    add_common_args(parser)
+
+    parser.add_argument("--pac", default=10, type=int)
     parser.add_argument('--generator_lr', type=float, default=2e-4,
                         help='Learning rate for the generator.')
     parser.add_argument('--discriminator_lr', type=float, default=2e-4,
                         help='Learning rate for the discriminator.')
-
     parser.add_argument('--generator_decay', type=float, default=1e-6,
                         help='Weight decay for the generator.')
     parser.add_argument('--discriminator_decay', type=float, default=0,
                         help='Weight decay for the discriminator.')
     parser.add_argument('--optimiser', type=str, default="adam", choices=['adam','rmsprop','sgd'], help='')
-
     parser.add_argument('--embedding_dim', type=int, default=128,
                         help='Dimension of input z to the generator.')
     parser.add_argument('--generator_dim', type=str, default='256,256',
@@ -51,26 +40,14 @@ def _parse_args():
     parser.add_argument('--discriminator_dim', type=str, default='256,256',
                         help='Dimension of each discriminator layer. '
                         'Comma separated integers with no whitespaces.')
-    parser.add_argument("--label_ordering", default='random', choices=['random', 'corr', 'kde', 'wasserstein', 'jsd', 'causal'])
-
-    parser.add_argument('--batch_size', type=int, default=500,
-                        help='Batch size. Must be an even number.')
     parser.add_argument('--save', default=None, type=str,
                         help='A filename to save the trained synthesizer.')
     parser.add_argument('--load', default=None, type=str,
                         help='A filename to load a trained synthesizer.')
-
     parser.add_argument('--sample_condition_column', default=None, type=str,
                         help='Select a discrete column name.')
     parser.add_argument('--sample_condition_column_value', default=None, type=str,
                         help='Specify the value of the selected discrete column.')
-    parser.add_argument("use_case", type=str, choices=["url","wids","botnet","lcld","heloc","news","faults"])
-    parser.add_argument("--version", type=str, default='unconstrained', choices=['unconstrained','constrained', "postprocessing"],
-                        help='Version of training. Correct values are unconstrained, constrained and postprocessing')
-    parser.add_argument('--performance_evaluation', action='store_true')
-    parser.add_argument('--runtime_evaluation', action='store_true')
-    parser.add_argument('--num_sampling_rounds', type=int, default=5)
-
     return parser.parse_args()
 
 
@@ -140,13 +117,15 @@ def main():
 
     model.set_random_state(args.seed)
 
-    if args.runtime_evaluation:
+    if args.runtime_evaluation_only:
         runtime_evaluation(args, model, wandb_run)
 
     wandb.finish()
 
+    unconstrained_generated_data, _ = generate_evaluation_data(args, model, real_data, columns)
+
     if  args.performance_evaluation:
-        evaluate_model_performance(args, model, roundable_idx, round_digits, columns, real_data, dataset_info)
+        evaluate_model_performance(args, unconstrained_generated_data, roundable_idx, round_digits, columns, real_data, dataset_info)
 
 if __name__ == '__main__':
     main()
