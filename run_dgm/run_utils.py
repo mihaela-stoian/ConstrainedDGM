@@ -1,13 +1,35 @@
 import wandb
 import pandas as pd
-import numpy as np
-import os
 import pickle
 from timeit import default_timer as timer
-import torch
 
 from evaluation.eval import constraints_sat_check, eval_synthetic_data, sdv_eval_synthetic_data
 from run_evaluation.reeval_final import prepare_gen_data
+
+
+def add_common_args(parser):
+    parser.add_argument("--seed", default=7, type=int)
+    parser.add_argument("use_case", type=str, choices=["url","wids","lcld","heloc","news","faults"])
+    parser.add_argument("--version", type=str, default='unconstrained', choices=['unconstrained','constrained', "postprocessing"],
+                        help='Version of training. Correct values are unconstrained, constrained and postprocessing')
+    parser.add_argument("--label_ordering", default='random', choices=['random', 'corr', 'kde', 'wasserstein', 'jsd', 'causal'])
+    parser.add_argument("--wandb_project", default='c-dgm_test', type=str)
+    parser.add_argument("--wandb_mode", default="online", type=str, choices=['online', 'disabled', 'offline'])
+    parser.add_argument('-e', '--epochs', default=300, type=int,
+                        help='Number of training epochs')
+    parser.add_argument('--batch_size', type=int, default=500,
+                        help='Batch size. Must be an even number.')
+    parser.add_argument('-n', '--num-samples', type=int,
+                        help='Number of rows to sample. Defaults to the training data size')
+    parser.add_argument('--num_sampling_rounds', type=int, default=5)
+    parser.add_argument("--save_every_n_epochs", default=50, type=int)
+    parser.add_argument('--skip_evaluation', action='store_true')
+    parser.add_argument('--runtime_evaluation_only', action='store_true')
+    parser.add_argument('--performance_evaluation', action='store_true')
+    parser.add_argument('--save_generated_data', action='store_true')
+    parser.add_argument("--use_only_target_original_dtype", action='store_true')
+    return parser
+
 
 def generate_evaluation_data(args, model, real_data, columns):
     gen_data, unconstrained_gen_data, constrained_unrounded_gen_data = [[[] for _ in range(3)] for _ in range(3)]
@@ -24,25 +46,28 @@ def generate_evaluation_data(args, model, real_data, columns):
     constrained_unrounded_generated_data = {"train":constrained_unrounded_gen_data[0], "val":constrained_unrounded_gen_data[1], "test":constrained_unrounded_gen_data[2]}
 
     if args.save_generated_data:
-        with open(f'{path}/unconstrained_generated_data.pkl', 'wb') as f:
+        with open(f'{args.path}/unconstrained_generated_data.pkl', 'wb') as f:
             pickle.dump(unconstrained_generated_data, f)
-        with open(f'{path}/constrained_unrounded_generated_data.pkl', 'wb') as f:
+        with open(f'{args.path}/constrained_unrounded_generated_data.pkl', 'wb') as f:
             pickle.dump(constrained_unrounded_generated_data, f)
     return unconstrained_generated_data, constrained_unrounded_generated_data      
 
 
 
-def evaluate_model_performance(args, model, roundable_idx, round_digits, columns, real_data, dataset_info):
+def evaluate_model_performance(args, unconstrained_generated_data, roundable_idx, round_digits, columns, real_data, dataset_info):
     ########################### WandB initialization ###################################
-    args.wandb_project = f"evaluation_{args.model_type}_{args.use_case}"
+    args.wandb_project = f"evaluation_{args.model_type}_{args.use_case}_test"
     wandb_run = wandb.init(project=args.wandb_project, id=args.exp_id)
     for k, v in args._get_kwargs():
         wandb_run.config[k] = v
     ####################################################################################
+    args.round_before_cons = False
+    args.round_after_cons = False
+    args.postprocessing = False
+       
     if args.version != 'unconstrained':
         args.version = args.label_ordering
 
-    unconstrained_generated_data, constrained_unrounded_generated_data = generate_evaluation_data(args, model, real_data, columns)
     generated_data, constrained_unrounded_generated_data = prepare_gen_data(args, unconstrained_generated_data, roundable_idx, round_digits, columns, real_data["train"])
 
     constraints_sat_check(args, real_data, constrained_unrounded_generated_data, log_wandb=True)
