@@ -304,7 +304,7 @@ def _evaluate_multi_classification(x_trains, y_trains, x_valids, y_valids, x_tes
             )
 
         results = pd.DataFrame(results)
-        results['avg'] = results.loc[:, ['macro_f1', 'weighted_f1', 'roc_auc']].mean(axis=1)        
+        results['avg'] = results.loc[:, ['macro_f1', 'weighted_f1', 'roc_auc']].mean(axis=1, numeric_only=True)        
         best_f1_param = results.param[results.macro_f1.idxmax()]
         best_weighted_param = results.param[results.weighted_f1.idxmax()]
         best_auroc_param = results.param[results.roc_auc.idxmax()]
@@ -378,7 +378,7 @@ def _evaluate_multi_classification(x_trains, y_trains, x_valids, y_valids, x_tes
                     }
                 )
                 i += 1
-            return pd.DataFrame(best_scores).mean(axis=0)
+            return pd.DataFrame(best_scores).mean(axis=0, numeric_only=True)
 
         def _df(dataframe):
             return {
@@ -478,7 +478,7 @@ def _evaluate_binary_classification( x_trains, y_trains, x_valids, y_valids, x_t
 
         # test the best model
         results = pd.DataFrame(results)
-        results['avg'] = results.loc[:, ['binary_f1', 'weighted_f1', 'roc_auc']].mean(axis=1)        
+        results['avg'] = results.loc[:, ['binary_f1', 'weighted_f1', 'roc_auc']].mean(axis=1, numeric_only=True)        
         best_f1_param = results.param[results.binary_f1.idxmax()]
         best_weighted_param = results.param[results.weighted_f1.idxmax()]
         best_auroc_param = results.param[results.roc_auc.idxmax()]
@@ -542,7 +542,7 @@ def _evaluate_binary_classification( x_trains, y_trains, x_valids, y_valids, x_t
                 best_scores.append(
                     {   
                         "name": model_repr,
-                        # "param": param,
+                        "param": param,
                         "binary_f1": binary_f1,
                         "weighted_f1": weighted_f1,
                         "roc_auc": roc_auc, 
@@ -554,7 +554,7 @@ def _evaluate_binary_classification( x_trains, y_trains, x_valids, y_valids, x_t
                 )
                 # print(len(best_scores))
                 i += 1
-            return pd.DataFrame(best_scores).mean(axis=0)
+            return pd.DataFrame(best_scores).mean(axis=0, numeric_only=True)
 
         def _df(dataframe):
             return {
@@ -657,7 +657,7 @@ def _evaluate_regression(x_trains, y_trains, x_valids, y_valids, x_tests, y_test
                     }
                 )
                 i += 1
-            return pd.DataFrame(best_scores).mean(axis=0)
+            return pd.DataFrame(best_scores).mean(axis=0, numeric_only=True)
 
         def _df(dataframe):
             return {
@@ -720,7 +720,7 @@ def compute_detection_scores(real_data, generated_data, problem_type, columns, t
     a, b, c = _EVALUATORS[problem_type](x_trains, y_trains, x_valids, y_valids, x_tests, y_tests, 'detection') 
 
     # det_avg = pd.DataFrame([a_all.mean(axis=0), a_all.std(axis=0)])
-    det_avg = pd.DataFrame([a.mean(axis=0)])
+    det_avg = pd.DataFrame([a.mean(axis=0, numeric_only=True)])
     return (a, b, c, det_avg)
 
 
@@ -739,7 +739,7 @@ def compute_utility_scores(real_data, generated_data, problem_type, columns, tar
         print('Started stasy utility eval for REAL data')
         a_real, b_real, c_real = _EVALUATORS[problem_type](x_trains_real, y_trains_real, [x_valid], [y_valid], [x_test], [y_test], 'utility', target_size)
         # df_avg_real = pd.DataFrame([a_real.mean(axis=0), a_real.std(axis=0)])
-        df_avg_real = pd.DataFrame([a_real.mean(axis=0)])
+        df_avg_real = pd.DataFrame([a_real.mean(axis=0, numeric_only=True)])
     else:
         a_real, b_real, c_real, df_avg_real = None, None, None, None
 
@@ -753,7 +753,7 @@ def compute_utility_scores(real_data, generated_data, problem_type, columns, tar
         x_trains_syn.append(fake_data)
     a_syn, b_syn, c_syn = _EVALUATORS[problem_type](x_trains_syn, y_trains_syn, [x_valid], [y_valid], [x_test], [y_test], "utility", target_size) 
     # df_avg_syn = pd.DataFrame([a_syn.mean(axis=0), a_syn.std(axis=0)])
-    df_avg_syn = pd.DataFrame([a_syn.mean(axis=0)])
+    df_avg_syn = pd.DataFrame([a_syn.mean(axis=0, numeric_only=True)])
     print('Finished stasy utility eval for SYNTH data')
 
     return (a_real, b_real, c_real, df_avg_real), (a_syn, b_syn, c_syn, df_avg_syn)
@@ -769,6 +769,6 @@ def compute_utility_real(real_data, generated_data, problem_type, columns, targe
     print('Started stasy utility eval for REAL data')
     a_real, b_real, c_real = _EVALUATORS[problem_type](x_trains_real, y_trains_real, [x_valid], [y_valid], [x_test], [y_test], 'utility', target_size)
     # df_avg_real = pd.DataFrame([a_real.mean(axis=0), a_real.std(axis=0)])
-    df_avg_real = pd.DataFrame([a_real.mean(axis=0)])
+    df_avg_real = pd.DataFrame([a_real.mean(axis=0, numeric_only=True)])
     return (a_real, b_real, c_real, df_avg_real)
 
