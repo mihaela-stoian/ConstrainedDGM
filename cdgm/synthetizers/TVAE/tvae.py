@@ -15,8 +15,6 @@ from cdgm.constraints_code.feature_orderings import set_ordering
 from cdgm.data_processors.ctgan.data_sampler import DataSampler
 from cdgm.data_processors.ctgan.data_transformer import DataTransformer
 from cdgm.synthetizers.CTGAN.base_ctgan import BaseSynthesizer, random_state
-from evaluation.constraints import constraint_satisfaction
-#from synthetizers.manual_url_constrained_layer import get_constr_out
 
 
 import wandb
@@ -223,14 +221,7 @@ class TVAE(BaseSynthesizer):
     def _apply_constrained(self, dec_data, data_bef, sigmas):
 
         self.inverse = self.transformer.inverse_transform(dec_data, None)
-        # if self.args.use_case == 'botnet':
-        #         self.inverse = self.inverse.clamp(-1000, 1000)  # TODO: for botnet?
-
         self.constrained = correct_preds(self.inverse, self.ordering, self.sets_of_constr)
-
-        # if self.args.use_case != 'botnet':
-        #     sat = check_all_constraints_sat(self.constrained.clone(), self.constraints)
-
         self.transformed = self.transformer.transform(self.constrained, dec_data)
 
         data_t = []
