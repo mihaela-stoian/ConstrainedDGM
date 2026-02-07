@@ -94,7 +94,8 @@ def prepare_gen_data(args, data, roundable_idx, round_digits, columns, X_train):
 
             # store data for constr. sat.
             unrounded_gen_data[part].append(sampled_data)
-
+            if args.model_type == "GOGGLE":
+                    sampled_data.columns = list(sampled_data.columns[:-1]) + [X_train.columns[-1]]
             # process data for calculating the utility, detection and store it
             if args.use_only_target_original_dtype:
                 target_col = columns[-1]

@@ -37,7 +37,17 @@ def generate_evaluation_data(args, model, real_data, columns):
     sizes = [real_data['train'].shape[0], real_data['val'].shape[0], real_data['test'].shape[0]]
     for r in range(args.num_sampling_rounds): 
         for i in range (len(sizes)):
-            sampled_data, unconstrained_output = model.sample(sizes[i], args.sample_condition_column, args.sample_condition_column_value)
+            if args.model_type == "GOGGLE":
+                X_partition = args.goggle_data[i]
+                sampled_data, unconstrained_output = model.sample(X_partition, inverse_transformed=True)
+                unconstrained_output = unconstrained_output.to_numpy()
+                sampled_data = sampled_data.to_numpy()
+            elif args.model_type == "CTGAN":
+                sampled_data, unconstrained_output = model.sample(sizes[i], args.sample_condition_column, args.sample_condition_column_value)
+            elif args.model_type == "TableGAN":
+                sampled_data, unconstrained_output = model.sample(sizes[i], len(columns))
+            else:
+                sampled_data, unconstrained_output = model.sample(sizes[i])
             unconstrained_gen_data[i].append(unconstrained_output)
             constrained_unrounded_output = pd.DataFrame(sampled_data, columns=columns).astype(float)
             constrained_unrounded_output[columns[-1]] = constrained_unrounded_output[columns[-1]].astype(real_data['train'].dtypes[-1])
@@ -69,8 +79,8 @@ def evaluate_model_performance(args, unconstrained_generated_data, roundable_idx
     if args.version != 'unconstrained':
         args.version = args.label_ordering
 
+  
     generated_data, constrained_unrounded_generated_data = prepare_gen_data(args, unconstrained_generated_data, roundable_idx, round_digits, columns, real_data["train"])
-
     constraints_sat_check(args, real_data, constrained_unrounded_generated_data, log_wandb=True)
         
     print('Using evaluators with the following specs', dataset_info["problem_type"], dataset_info["target_size"], dataset_info["target_col"])

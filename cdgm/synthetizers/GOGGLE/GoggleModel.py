@@ -154,7 +154,6 @@ class GoggleModel:
         for epoch in range(self.epochs):
             train_loss, num_samples = 0.0, 0
             for i, data in enumerate(train_loader):
-                print("IIIIIIIII", i)
                 if i>5:
                     break
                 if self.iter_opt:
