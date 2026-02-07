@@ -307,7 +307,7 @@ class TableGAN(LegacySingleTableBaseline):
         import pickle as pkl
         pkl.dump(self, open(f"{self.path}/model_tablegan.pt", 'wb'), -1)
 
-    def sample_unconstrained(self, n, col_len):
+    def sample(self, n, col_len):
         self.generator.eval()
 
         steps = n // self.batch_size + 1
