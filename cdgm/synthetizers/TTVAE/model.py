@@ -19,20 +19,16 @@ import torch.nn.functional as F
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from torch.autograd import Variable
-# from ttvae.util import DataTransformer, reparameterize, _loss_function_MMD,z_gen
-from ttvae.util import reparameterize, _loss_function_MMD, z_gen
 
-from constraints_code.compute_sets_of_constraints import compute_sets_of_constraints
-from constraints_code.correct_predictions import correct_preds, check_all_constraints_sat
-from constraints_code.parser import parse_constraints_file
-from constraints_code.feature_orderings import set_ordering
+from cdgm.synthetizers.TTVAE.util import reparameterize, _loss_function_MMD, z_gen
+from cdgm.constraints_code.compute_sets_of_constraints import compute_sets_of_constraints
+from cdgm.constraints_code.correct_predictions import correct_preds, check_all_constraints_sat
+from cdgm.constraints_code.parser import parse_constraints_file
+from cdgm.constraints_code.feature_orderings import set_ordering
+from cdgm.data_processors.ctgan.data_sampler import DataSampler
+from cdgm.data_processors.ctgan.data_transformer import DataTransformer
+from cdgm.synthetizers.CTGAN.base_ctgan import BaseSynthesizer, random_state
 
-
-from data_processors.ctgan.data_sampler import DataSampler
-from data_processors.ctgan.data_transformer import DataTransformer
-# from evaluation.constraints import constraint_satisfaction
-# from ttvae.base import BaseSynthesizer, random_state
-from base_ctgan import BaseSynthesizer, random_state
 
 
 
