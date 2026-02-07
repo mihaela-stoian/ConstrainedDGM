@@ -1,9 +1,10 @@
 import wandb
 import pandas as pd
+import numpy as np
 import pickle
 from timeit import default_timer as timer
 
-from evaluation.eval import constraints_sat_check, eval_synthetic_data, sdv_eval_synthetic_data
+from evaluation.eval import constraints_sat_check, eval_synthetic_data
 from run_evaluation.reeval_final import prepare_gen_data
 
 

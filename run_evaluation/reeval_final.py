@@ -9,7 +9,7 @@ from cdgm.constraints_code.compute_sets_of_constraints import compute_sets_of_co
 from cdgm.constraints_code.correct_predictions import correct_preds, check_all_constraints_sat
 from cdgm.constraints_code.feature_orderings import set_ordering
 from cdgm.constraints_code.parser import parse_constraints_file
-from evaluation.eval import constraints_sat_check, sdv_eval_synthetic_data, eval_synthetic_data
+from evaluation.eval import constraints_sat_check,  eval_synthetic_data
 from utils import read_csv, set_seed, _load_json
 
 warnings.filterwarnings(action='ignore')
@@ -173,10 +173,6 @@ def main():
         generated_data, unrounded_generated_data = prepare_gen_data(args, generated_data, roundable_idx, round_digits,  columns, X_train)
 
         constraints_sat_check(args, real_data, unrounded_generated_data, log_wandb=True)
-        # sdv_eval_synthetic_data(args, args.use_case, real_data, generated_data, columns,
-        #                         problem_type=dataset_info["problem_type"],
-        #                         target_utility=dataset_info["target_col"], target_detection="", log_wandb=True,
-        #                         wandb_run=wandb_run)
         print('Using evaluators with the following specs', dataset_info["problem_type"], dataset_info["target_size"], dataset_info["target_col"])
         eval_synthetic_data(args, args.use_case, real_data, generated_data, columns,
                             problem_type=dataset_info["problem_type"], target_utility=dataset_info["target_col"],

@@ -18,7 +18,6 @@ from cdgm.constraints_code.feature_orderings import set_ordering
 from cdgm.data_processors.ctgan.data_sampler import DataSampler
 from cdgm.data_processors.ctgan.data_transformer import DataTransformer
 from cdgm.synthetizers.CTGAN.base_ctgan import BaseSynthesizer, random_state
-from evaluation.constraints import constraint_satisfaction
 import wandb
 
 class Discriminator(Module):

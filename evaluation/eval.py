@@ -5,83 +5,46 @@ import pandas as pd
 import torch
 import wandb
 
-from cdgm.constraints_code.compute_sets_of_constraints import  compute_sets_of_constraints
-from cdgm.constraints_code.correct_predictions import check_all_constraints_sat
-from cdgm.constraints_code.feature_orderings import set_ordering
+
 from cdgm.constraints_code.parser import parse_constraints_file
-from evaluation import stasy_utility_detection, synthcity_quality
-from evaluation.constraints import constraint_satisfaction
+from evaluation import stasy_utility_detection
 from evaluation.visual import feature_correlation
-from utils import metrics_to_wandb
 
-
-def eval_quality(real_data, generated_data_list, columns, target_column):
-
-    real_data_loader = GenericDataLoader(real_data, target_column=target_column)
-    #precision, coverage, authenticity = [], [], []
-    results = []
-
-    for generated_data in generated_data_list:
-        #gen_data = pd.DataFrame(data=generated_data, columns=columns)
-        #gen_data = pd.concat([gen_data, gen_data])
-        gen_data_loader = GenericDataLoader(generated_data, target_column=target_column)
-
-        quality_evaluator = synthcity_quality.AlphaPrecision()
-        qual_res = quality_evaluator.evaluate(gen_data_loader, real_data_loader)
-        qual_res = {
-            k: v for (k, v) in qual_res.items() if "naive" in k
-        }  # use the naive implementation of AlphaPrecision
-        #qual_score = np.mean(list(qual_res.values()))
-        results.append([qual_res["delta_precision_alpha_naive"], qual_res["delta_coverage_beta_naive"], qual_res["authenticity_naive"]])
-    quality_scores = pd.DataFrame(results, columns=["Precision_alpha", "Coverage_beta", "Authenticity"])
-    # quality_scores = pd.DataFrame([quality_scores.mean(axis=0), quality_scores.std(axis=0)])
-    quality_scores = pd.DataFrame([quality_scores.mean(axis=0)])
-    quality_avg = pd.DataFrame(quality_scores.mean(axis=1), columns = ['Quality'])
-    return quality_scores, quality_avg
 
 
 def eval_synthetic_data(args, use_case, real_data, generated_data, columns, problem_type, target_utility, target_utility_size, target_detection, log_wandb, wandb_run, unrounded_generated_data_for_cons_sat=None, eval_real=False):
 
     feature_correlation(real_data["test"], log_wandb, wandb_run, "correlation_real")
 
-    print('Check (manual) constraint sat. and get feat. corr. on unrounded_generated_data_for_cons_sat ')
+    print('Get feat. corr. on unrounded_generated_data_for_cons_sat ')
     results_cons = []
     if unrounded_generated_data_for_cons_sat is None:
         unrounded_generated_data_for_cons_sat = generated_data
     for i in range(len(unrounded_generated_data_for_cons_sat["test"])):
         generated_data_i = unrounded_generated_data_for_cons_sat["test"][i]
-        features = generated_data_i.iloc[:, :-1].to_numpy()
-        cons_rate, batch_rate, ind_score = constraint_satisfaction(features, use_case)
-        results_cons.append([ind_score.mean(), batch_rate,  cons_rate])
-        #gen_data_i = pd.DataFrame(generated_data_i, columns=columns)
         feature_correlation(generated_data_i, log_wandb, wandb_run, f"INFERENCE/correlation/syn_{i}")
-
-    results_cons = pd.DataFrame(results_cons, columns=["mean_sat_score", "cons_sat_rate_all", "cons_sat_for_individual_example"])
-    cons_avg = pd.DataFrame([results_cons.mean(axis=0), results_cons.std(axis=0)], index=["Mean", "Std"])
-
 
     print('Compute the stasy utility scores')
     utility_real, utility_syn = stasy_utility_detection.compute_utility_scores(real_data, generated_data["train"],  problem_type, columns, target_utility, target_utility_size, eval_real=eval_real)
 
-    if problem_type=="binary_classification":
-        if eval_real:
-            utility_real[3].columns = ["Utility_real.binary_f1", "Utility_real.roc_auc", "Utility_real.weighted_f1", "Utility_real.accuracy"]
-        utility_syn[3].columns = ["Utility_syn.binary_f1", "Utility_syn.roc_auc", "Utility_syn.weighted_f1", "Utility_syn.accuracy"]
-    elif problem_type=="multiclass_classification":
-        if eval_real:
-            utility_real[3].columns = ["Utility_real.macro_f1", "Utility_real.roc_auc", "Utility_real.weighted_f1", "Utility_real.accuracy"]
-        utility_syn[3].columns = ["Utility_syn.macro_f1", "Utility_syn.roc_auc", "Utility_syn.weighted_f1", "Utility_syn.accuracy"]
-    elif problem_type=="regression":
-        if eval_real:
-            utility_real[3].columns = ["Utility_real.r2", "Utility_real.explained_variance", "Utility_real.MAE", "Utility_real.RMSE"]
-        utility_syn[3].columns = ["Utility_syn.r2", "Utility_syn.explained_variance", "Utility_syn.MAE", "Utility_syn.RMSE"]
+    metric_map = {
+        "binary_classification": ["binary_f1", "roc_auc", "weighted_f1", "accuracy"],
+        "multiclass_classification": ["macro_f1", "roc_auc", "weighted_f1", "accuracy"],
+        "regression": ["r2", "explained_variance", "MAE", "RMSE"],
+    }
+
+    metrics = metric_map[problem_type]
+
+    if eval_real:
+        utility_real[3].columns = [f"Utility_real.{m}" for m in metrics]
+    utility_syn[3].columns = [f"Utility_syn.{m}" for m in metrics]
 
     print('Compute the stasy detection scores')
     a_det, b_det, c_det, detection_avg = stasy_utility_detection.compute_detection_scores(real_data, generated_data, "binary_classification", columns, target_detection)
     detection_avg.columns = ["Detection.binary_f1", "Detection.roc_auc", "Detection.weighted_f1", "Detection.accuracy"]
 
-    # print('Finished quality+utility+det. eval using synthcity and stasy')
-    print('Finished utility+det. eval using synthcity and stasy')
+
+    print('Finished utility+det. eval')
 
     # all_avg = pd.concat([quality_avg, utility_syn[3], detection_avg], axis=1)
     all_avg = pd.concat([utility_syn[3], detection_avg], axis=1)
@@ -89,9 +52,7 @@ def eval_synthetic_data(args, use_case, real_data, generated_data, columns, prob
 
     save_id = 'INFERENCE'
     pkl.dump(results_cons, open(f'{args.path}/{save_id}_results_cons.pkl', 'wb'), -1)
-    pkl.dump(cons_avg, open(f'{args.path}/{save_id}_cons_avg.pkl', 'wb'), -1)
     pkl.dump(generated_data, open(f'{args.path}/{save_id}_generated_data.pkl', 'wb'), -1)
-    # pkl.dump((quality_scores, quality_avg), open(f'{args.path}/{save_id}_quality_scores.pkl', 'wb'), -1)
     pkl.dump(utility_syn, open(f'{args.path}/{save_id}_utility_scores.pkl', 'wb'), -1)
     pkl.dump((a_det, b_det, c_det, detection_avg), open(f'{args.path}/{save_id}_detection_scores.pkl', 'wb'), -1)
     pkl.dump(all_avg, open(f'{args.path}/{save_id}_all_avg_scores.pkl', 'wb'), -1)
@@ -108,25 +69,10 @@ def eval_synthetic_data(args, use_case, real_data, generated_data, columns, prob
 
 
     if log_wandb:
-        wandb_run.log({f"INFERENCE/constraints/all": wandb.Table(dataframe=results_cons)})
-        wandb_run.log({f"INFERENCE/aggregated/constraints": wandb.Table(dataframe=cons_avg)})
         wandb_run.log({f"INFERENCE/aggregated/eval_metrics_syn": wandb.Table(dataframe=all_avg)})
-
-        # wandb_run.log({f"INFERENCE/quality/quality": wandb.Table(dataframe=quality_scores)})
-        wandb_run.log({f"INFERENCE/utility/synthetic/best_f1_scores": wandb.Table(dataframe=utility_syn[0])})
-        wandb_run.log({f"INFERENCE/utility/synthetic/best_weighted_scores": wandb.Table(dataframe=utility_syn[1])})
-        wandb_run.log({f"INFERENCE/utility/synthetic/best_auroc_scores": wandb.Table(dataframe=utility_syn[2])})
-
-        wandb_run.log({f"INFERENCE/detection/best_f1_scores": wandb.Table(dataframe=a_det)})
-        wandb_run.log({f"INFERENCE/detection/best_weighted_scores": wandb.Table(dataframe=b_det)})
-        wandb_run.log({f"INFERENCE/detection/best_auroc_scores": wandb.Table(dataframe=c_det)})
-
         if eval_real:
             wandb_run.log({f"INFERENCE/aggregated/utility_real": wandb.Table(dataframe=utility_real[3])})
-            wandb_run.log({f"INFERENCE/utility/real/best_f1_scores": wandb.Table(dataframe=utility_real[0])})
-            wandb_run.log({f"INFERENCE/utility/real/best_weighted_scores": wandb.Table(dataframe=utility_real[1])})
-            wandb_run.log({f"INFERENCE/utility/real/best_auroc_scores": wandb.Table(dataframe=utility_real[2])})
- 
+           
 
 def constraints_sat_check(args, real_data, generated_data, log_wandb):
     # Note: the ordering of the labels does not matter here
