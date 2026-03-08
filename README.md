@@ -8,9 +8,8 @@ However, they fail to comply with constraints that encode essential background k
 In our paper, we address this limitation and show how DGMs for tabular data can be transformed into **Constrained Deep Generative Models (C-DGMs)**, whose generated samples are guaranteed to be compliant with the given constraints. 
 This is achieved by automatically parsing the constraints and transforming them into a Constraint Layer (CL) seamlessly integrated with the DGM, as shown below.
 
-[//]: # (<img height="240" src="https://github.com/mihaela-stoian/ConstrainedDGM/blob/main/extras/CL_overview.png" width="400"/>)
-<img height="240" src="./extras/CL_overview.png" width="400"/>
 
+![Constraint Layer](./CL.png){height=240px width=400px}
 
 
 ## Requirements
