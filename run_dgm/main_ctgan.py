@@ -10,8 +10,8 @@ import wandb
 sys.path.append('.')
 
 from cdgm.synthetizers.CTGAN.ctgan import CTGAN
-from run_dgm.run_utils import evaluate_model_performance, runtime_evaluation, add_common_args, generate_evaluation_data
-from utils import _load_json, all_div_gt_n, read_csv, set_seed
+from run_dgm.run_utils import evaluate_model_performance, runtime_evaluation, add_common_args, generate_evaluation_data, set_pac
+from utils import _load_json, read_csv, set_seed
 
 DATETIME = datetime.datetime.now()
 
@@ -55,18 +55,10 @@ def main():
     """CLI."""
     args = _parse_args()
     set_seed(args.seed)
+    set_pac(args)
     args.exp_id  = f"{args.version}_{args.label_ordering}_{args.seed}_{args.epochs}_{args.batch_size}_{args.discriminator_lr}_{args.generator_lr}_{DATETIME:%d-%m-%y--%H-%M-%S}"
     args.path = f"outputs/{args.model_type}/{args.use_case}/{args.version}/{args.exp_id}"
     os.makedirs(args.path)
-
-
-    # set args.pac:
-    if args.pac != 1:
-        if args.batch_size % args.pac != 0:
-            original_pac = args.pac
-            args.pac = all_div_gt_n(original_pac, args.batch_size)
-            print(f'Changed pac {original_pac} to {args.pac}')
-
     ######################################################################
     wandb_run = wandb.init(project=args.wandb_project, id=args.exp_id, reinit=True,  mode=args.wandb_mode)
     for k,v in args._get_kwargs():
