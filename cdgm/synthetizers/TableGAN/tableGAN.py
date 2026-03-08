@@ -138,12 +138,8 @@ def _apply_constrained(use_case, version, fake, side, transformer, col_len, sets
         fake_re = fake.reshape(-1, side * side)
         fake_re = fake_re[:, :col_len]
         inverse = transformer.inverse_transform(fake_re)
-        # cons = get_constr_out(inverse)
-        # if use_case == 'botnet':
-        #     inverse = inverse.clamp(-1000, 1000)
         cons = correct_preds(inverse, ordering, sets_of_constr)
-        if use_case != 'botnet':
-            sat = check_all_constraints_sat(cons, constraints)
+        sat = check_all_constraints_sat(cons, constraints)
         fake_cons = transformer.transform(cons)
 
         if side * side > len(fake_cons[0]):
@@ -324,8 +320,6 @@ class TableGAN(LegacySingleTableBaseline):
 
             unconstrained_output = inverse.clone()
             if self.version == "constrained" or self.version == "postprocessing":
-                if self.args.use_case == 'botnet':
-                    inverse = inverse.clamp(-1000, 1000)  # TODO: for botnet?
                 inverse = correct_preds(inverse, self.ordering, self.sets_of_constr)
 
             data.append(inverse.detach().cpu().numpy())
