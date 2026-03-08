@@ -64,7 +64,8 @@ def main():
 
     real_data = {"train": X_train, "val": X_val, "test": X_test}
     columns = X_train.columns.values.tolist()
-    
+    args.train_data_cols = columns
+    args.dtypes = X_train.dtypes
 
  
     # fit transformer on full dataset (concat X_train + X_test + X_val); (reason for including test: target column is not fitted, so it's fine)
@@ -84,10 +85,6 @@ def main():
     X_train, _ = prepare_data_for_goggle(columns, X_train, ct=ct, regression=is_regression_task)
     X_test, _ = prepare_data_for_goggle(columns, X_test, ct=ct, regression=is_regression_task)
     X_val, _ = prepare_data_for_goggle(columns, X_val, ct=ct, regression=is_regression_task)
-    # TODO: do we want to update the columns after this step so that target col is actually named "target"??? if no, then remove the next 3 lines
-    columns = X_train.columns.values.tolist()
-    args.train_data_cols = columns
-    args.dtypes = X_train.dtypes
     args.goggle_data = [X_train, X_val, X_test]
 
     if cat_cols == None:

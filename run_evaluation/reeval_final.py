@@ -26,7 +26,6 @@ def get_args():
     args.add_argument("use_case", type=str)
     args.add_argument("model_type", type=str)
     args.add_argument("version", type=str, choices=['unconstrained', 'random', 'corr', 'kde', 'wasserstein', 'jsd', 'causal'])
-    # args.add_argument("expdir", type=str)
     args.add_argument("--prefix", default='./', help='the path prefix to experiment dir')
     args.add_argument("--round_before_cons", action='store_true')
     args.add_argument("--round_after_cons", action='store_true')
@@ -74,7 +73,6 @@ def prepare_gen_data(args, data, roundable_idx, round_digits, columns, X_train):
             sampled_data = data[part][j]
 
             if args.round_before_cons:
-                # sampled_data = sampled_data.numpy()
                 sampled_data[:, roundable_idx] = sampled_data[:, roundable_idx].round()
 
             # constraint the output:
@@ -88,14 +86,8 @@ def prepare_gen_data(args, data, roundable_idx, round_digits, columns, X_train):
             if args.round_after_cons:
                 sampled_data.iloc[:, roundable_idx] = sampled_data.iloc[:, roundable_idx].round(round_digits)
 
-            # sampled_data = sampled_data.astype(float)
-            # target_col = columns[-1]
-            # sampled_data[target_col] = sampled_data[target_col].astype(X_train.dtypes[-1])
-
-            # store data for constr. sat.
+             # store data for constr. sat.
             unrounded_gen_data[part].append(sampled_data)
-            if args.model_type == "GOGGLE":
-                    sampled_data.columns = list(sampled_data.columns[:-1]) + [X_train.columns[-1]]
             # process data for calculating the utility, detection and store it
             if args.use_only_target_original_dtype:
                 target_col = columns[-1]

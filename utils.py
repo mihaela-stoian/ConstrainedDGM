@@ -178,9 +178,6 @@ def prepare_data_for_goggle(columns, X_original, ct=None, regression=False):  # 
             X_ = ct.transform(X)
 
         X = pd.DataFrame(X_, index=X.index, columns=X.columns)
-        # target_col = X_original.columns[-1]
-        # X = X.rename(columns={target_col: 'target'})
-
     else:
         X = X_original.drop(columns=columns[-1])
         y = X_original.drop(columns=columns[:-1])
@@ -193,8 +190,5 @@ def prepare_data_for_goggle(columns, X_original, ct=None, regression=False):  # 
         else:
             X_ = ct.transform(X)
 
-        X = pd.DataFrame(X_, index=X.index, columns=X.columns)
-        X["target"] = y
-
-    print(X.head())
+    X = pd.DataFrame(X_, index=X.index, columns=X.columns)
     return X, ct
