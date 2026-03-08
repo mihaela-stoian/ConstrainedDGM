@@ -9,8 +9,7 @@ In our paper, we address this limitation and show how DGMs for tabular data can 
 This is achieved by automatically parsing the constraints and transforming them into a Constraint Layer (CL) seamlessly integrated with the DGM, as shown below.
 
 
-![Constraint Layer](./CL.png){height=240px width=400px}
-
+<img src="./CL.png" width="400" height="240" />
 
 ## Requirements
 ````
@@ -34,14 +33,16 @@ Place train, val and test splits in the approriate dataset folder under data dir
 Please refer to the appendix of our paper for more details on the datasets we used, their original source and pre-processing if any.
 
 
-## Training
+## Training and evaluation
 
 Models are trained using the following command structure:
 
 ````
 python main_<model>.py <use_case> [arguments]
 ````
-Supported models are [WGAN, TableGAN CTGAN, TVAE, TTVAE, GOGGLE] and use_case ["url","wids","lcld","heloc","news","faults"]
+On the same round you can perform evaluation by setting  `--performance_evaluation` to  `True`.
+
+Supported models are `[WGAN, TableGAN CTGAN, TVAE, TTVAE, GOGGLE]` and use_case `[url, wids, lcld,heloc, news, faults]`
 
 General cross model arguments include:
 | Argument | Type | Default | Choices / Description |
@@ -58,7 +59,7 @@ General cross model arguments include:
 | `--performance_evaluation` | `flag` | `False` | Should be set to run downstream performance metrics after training. |
 
 
-For model dependent parameters please take a look at each main_<model>.py file.
+For model dependent parameters please take a look at each `main_<model>.py` file.
 
 ## Post evaluation
 The training script allows you to run the evaluation step for utility and detection. However To run evaluation separately using previously saved synthetic data use:
