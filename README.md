@@ -62,7 +62,7 @@ General cross model arguments include:
 For model dependent parameters please take a look at each `main_<model>.py` file.
 
 ## Post evaluation
-The training script allows you to run the evaluation step for utility and detection. However To run evaluation separately using previously saved synthetic data use:
+The training script allows you to run the evaluation step for utility and detection. However to run the evaluation separately using previously saved synthetic data use:
 
 ````
 reeval_final.py ${use_case} ${model} ${version}
