@@ -9,7 +9,7 @@ In our paper, we address this limitation and show how DGMs for tabular data can 
 This is achieved by automatically parsing the constraints and transforming them into a Constraint Layer (CL) seamlessly integrated with the DGM, as shown below.
 
 
-<img src="./CL.png" width="400" height="240" />
+<img src="./CL.png" width="400" height="240" style="display:block; margin:auto;" />
 
 ## Requirements
 ````
