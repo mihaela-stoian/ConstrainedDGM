@@ -6,7 +6,7 @@ from timeit import default_timer as timer
 
 from evaluation.eval import constraints_sat_check, eval_synthetic_data
 from run_evaluation.reeval_final import prepare_gen_data
-
+from utils import all_div_gt_n
 
 def add_common_args(parser):
     parser.add_argument("--seed", default=7, type=int)
@@ -31,6 +31,12 @@ def add_common_args(parser):
     parser.add_argument("--use_only_target_original_dtype", action='store_true')
     return parser
 
+def set_pac(args):
+  if args.pac != 1:
+    if args.batch_size % args.pac != 0:
+        original_pac = args.pac
+        args.pac = all_div_gt_n(original_pac, args.batch_size)
+        print(f'Changed pac {original_pac} to {args.pac}')
 
 def generate_evaluation_data(args, model, real_data, columns):
     gen_data, unconstrained_gen_data, constrained_unrounded_gen_data = [[[] for _ in range(3)] for _ in range(3)]
@@ -46,6 +52,8 @@ def generate_evaluation_data(args, model, real_data, columns):
                 sampled_data, unconstrained_output = model.sample(sizes[i], args.sample_condition_column, args.sample_condition_column_value)
             elif args.model_type == "TableGAN":
                 sampled_data, unconstrained_output = model.sample(sizes[i], len(columns))
+            elif args.model_type == "WGAN":
+                sampled_data, unconstrained_output = model.sample(sizes[i], args.input_length)
             else:
                 sampled_data, unconstrained_output = model.sample(sizes[i])
             unconstrained_gen_data[i].append(unconstrained_output)
@@ -94,7 +102,19 @@ def runtime_evaluation(args, model, wandb_run):
     runs = []
     for i in range(args.num_sampling_rounds):
         start = timer()
-        sampled_data = model.sample(size)
+        if args.model_type == "GOGGLE":
+            X_partition = args.goggle_data[i]
+            sampled_data, unconstrained_output = model.sample(X_partition, inverse_transformed=True)
+            unconstrained_output = unconstrained_output.to_numpy()
+            sampled_data = sampled_data.to_numpy()
+        elif args.model_type == "CTGAN":
+            sampled_data, unconstrained_output = model.sample(size, args.sample_condition_column, args.sample_condition_column_value)
+        elif args.model_type == "TableGAN":
+            sampled_data, unconstrained_output = model.sample(size, len(args.train_data_cols))
+        elif args.model_type == "WGAN":
+            sampled_data, unconstrained_output = model.sample(size, args.input_length)
+        else:
+            sampled_data, unconstrained_output = model.sample(size)
         end = timer()
         runtime = end - start
         runs.append(runtime)
