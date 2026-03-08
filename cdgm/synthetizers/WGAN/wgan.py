@@ -13,12 +13,10 @@ from cdgm.constraints_code.correct_predictions import correct_preds, check_all_c
 from cdgm.constraints_code.parser import parse_constraints_file
 from cdgm.constraints_code.feature_orderings import set_ordering
 # from helpers.eval import  eval
-from evaluation.constraints import constraint_satisfaction
 from torch.nn  import functional
 warnings.filterwarnings(action='ignore')
 torch.set_printoptions(sci_mode=False)
 import wandb
-import matplotlib.pyplot as plt
 
 class SingleTaskDataset(Dataset):
     def __init__(self, data):
@@ -275,6 +273,30 @@ class WGAN():
         loss_d = mean_d/disc_repeats
         # wandb.log({'steps/gen_loss': generator_loss, 'steps/disc_loss': loss_d})
         return generator_loss.item(), loss_d_syn.item(), loss_d_real.item(),  loss_d.item()
+    
+
+    def sample(self,  n, input_length):
+        """Sample data similar to the training data
+
+        Args:
+            n (int):
+                Number of rows to sample.
+        Returns:
+            numpy.ndarray or pandas.DataFrame
+        """
+        _, sets_of_constr, ordering_list = self.generator.get_sets_constraints(self.args.label_ordering, self.args.constraints_file)  
+        self.generator.eval()
+        noise = torch.rand(size=(n, input_length)).float()
+        with torch.no_grad():
+            generated_data = self.generator(noise) # it always returns the unconstrained, scaled (so before inverse is applied, even if version was constrained)
+        generated_data = self.generator.scaler.inverse_transform(generated_data)
+        unconstrained_data = generated_data.clone().detach()
+        if self.args.version == "postprocessing" or self.args.version == 'constrained':
+
+            generated_data = correct_preds(generated_data, ordering_list, sets_of_constr)
+        sampled_data = generated_data.detach().numpy()
+        return sampled_data, unconstrained_data
+
 
 
 def train_model(args, train_loader, scaler, path_name, train_data, test_data):
@@ -323,23 +345,3 @@ def train_model(args, train_loader, scaler, path_name, train_data, test_data):
 
 
 
-def sample(args, gan, n, input_length, ordering_list, sets_of_constr):
-    """Sample data similar to the training data
-
-    Args:
-        n (int):
-            Number of rows to sample.
-    Returns:
-        numpy.ndarray or pandas.DataFrame
-    """
-    gan.generator.eval()
-    noise = torch.rand(size=(n, input_length)).float()
-    with torch.no_grad():
-        generated_data = gan.generator(noise) # it always returns the unconstrained, scaled (so before inverse is applied, even if version was constrained)
-    generated_data = gan.generator.scaler.inverse_transform(generated_data)
-    unconstrained_data = generated_data.clone().detach()
-    if args.version == "postprocessing" or args.version == 'constrained':
-
-        generated_data = correct_preds(generated_data, ordering_list, sets_of_constr)
-    sampled_data = generated_data.detach().numpy()
-    return sampled_data, unconstrained_data
